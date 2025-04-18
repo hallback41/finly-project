@@ -1,0 +1,18 @@
+@use "../helpers" as *;
+
+:root[data-theme="pixel"] {
+  // Цвета
+  --color-text: #fdfdfe;
+  --color-text-overlay: #070707;
+  --color-border: linear-gradient(135deg, #fbfefe, #f5d697);
+
+  // Шрифты
+  --font-family-base: "Monocraft", sans-serif;
+
+  // Бордеры
+  --categorie-border-style: solid;
+  --category-border-height: #{rem(5)};
+  --category-border-color: rgb(252, 251, 251);
+  --category-border-radius: none;
+  --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+}

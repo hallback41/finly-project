@@ -1,0 +1,63 @@
+@use "helpers" as *;
+@use "./themes/themes";
+
+:root {
+  --color-light: #ffffff;
+  --color-dark: #020202;
+  --color-dark-10: #1a1a1a;
+  --color-dark-15: #262626;
+  --color-dark-20: #333333;
+  --color-dark-40: #666666;
+  --color-gray-50: #7e7e81;
+  --color-gray-60: #98989a;
+  --color-accent: #ffd11a;
+  --color-red: #ff5500;
+
+  --font-family-base: "Monocraft", sans-serif;
+  --font-family-accent: "OpenSans-Italic", sans-serif;
+  --font-family-fantasy-them: "UncialAntiqua-Regular", sans-serif;
+
+  --container-width: #{rem(1600)};
+  --container-padding-x: #{rem(16)};
+
+  --transition-duration: 0.2s;
+
+  //Category settings
+  --category-height-desktop: #{rem(200)};
+  --category-height-laptop: #{rem(170)};
+  --category-height-mobile: #{rem(150)};
+
+  //Categry gradient colors
+  --food-gradient-1: #d47c38;
+  --food-gradient-2: #8b6d44;
+  --home-gradient-1: #8b6d44;
+  --home-gradient-2: #bca98a;
+  --medicine-gradient-1: #5a97ca;
+  --medicine-gradient-2: #99c7f4;
+  --fun-gradient-1: #d8a33d;
+  --fun-gradient-2: #ffc278;
+  --clothes-gradient-1: #ab4d4d;
+  --clothes-gradient-2: #e37e7e;
+  --hobby-gradient-1: #8d52a1;
+  --hobby-gradient-2: #c490db;
+  --pets-gradient-1: #c96a45;
+  --pets-gradient-2: #f79c74;
+  --restaurant-gradient-1: #c3a549;
+  --restaurant-gradient-2: #ffe07c;
+  --sport-gradient-1: #7cc26e;
+  --sport-gradient-2: #ade9a0;
+  --credits-gradient-1: #5e4230;
+  --credits-gradient-2: #a6774f;
+  --internet-gradient-1: #68a2c8;
+  --internet-gradient-2: #a3d0eb;
+  --personal-gradient-1: #ff9800;
+  --personal-gradient-2: #4caf50;
+  --car-gradient-1: #ad5757;
+  --car-gradient-2: #dc8888;
+  --savings-gradient-1: #dcd269;
+  --savings-gradient-2: #f8f5a8;
+
+  @include laptop {
+    --container-width: #{rem(1280)};
+  }
+}

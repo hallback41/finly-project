@@ -1,0 +1,132 @@
+@use "sass:list";
+@use "../../../styles/helpers/" as *;
+@use "../../../styles/helpers/map/categories-map" as cat;
+
+.categorie {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--categorie-border-radius);
+  border-image-slice: 1;
+  z-index: 1;
+
+  //фальш бордер
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: rem(5);
+    background: var(--color-border);
+    border-radius: var(--categorie-border-radius);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @each $name, $data in cat.$categories {
+    $grad1: list.nth($data, 1);
+    $grad2: list.nth($data, 2);
+
+    @include categorie-theme($name, $grad1, $grad2);
+  }
+
+  @include mobile {
+    height: var(--category-height-mobile);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &__form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+  }
+
+  &__wrapper {
+    display: flex;
+    height: var(--category-height-desktop);
+
+    @include laptop {
+      height: var(--category-height-laptop);
+    }
+
+    @include mobile {
+      height: var(--category-height-mobile);
+    }
+  }
+
+  &--error {
+    animation: shake 0.3s ease;
+    border: rem(5) solid var(--color-red);
+    transition: background-color 0.3s ease;
+  }
+
+  &__logo {
+    position: relative;
+    flex: 0 0 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(10);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  &__title {
+    position: relative;
+    display: inline-block;
+    flex: 1;
+    @include flex-center;
+
+    &-text {
+      position: absolute;
+      color: var(--color-text);
+      font-family: var(--font-family-them);
+      z-index: 2;
+      @include abs-center;
+      @include mobile {
+        @include fluid-text(100, 22);
+      }
+
+      &-overlay {
+        position: absolute;
+        z-index: 1;
+        font-family: var(--font-family-them);
+        -webkit-text-stroke: rem(6) var(--color-text-overlay);
+        @include abs-center;
+        @include mobile {
+          @include fluid-text(100, 22);
+        }
+      }
+    }
+  }
+}
+
+@each $name, $data in cat.$categories {
+  :root[data-theme="ios"] .categorie.categorie--#{$name} {
+    background: rgba(255, 255, 255, 0.416);
+  }
+}
+
+@each $name, $data in cat.$categories {
+  :root[data-theme="iosDark"] .categorie.categorie--#{$name} {
+    background: rgba(77, 75, 75, 0.746);
+  }
+}

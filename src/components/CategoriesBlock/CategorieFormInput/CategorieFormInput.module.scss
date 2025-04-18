@@ -1,0 +1,111 @@
+@use "../../../styles/helpers/" as *;
+@use "../../../styles/helpers/map/categories-map" as cat;
+
+.form {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-dark);
+  transition: filter 0.3s ease;
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: var(--category-height-desktop);
+    justify-content: space-between;
+    background-color: var(--color-dark);
+    border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+
+    @include laptop {
+      height: var(--category-height-laptop);
+    }
+
+    @include mobile {
+      max-height: var(--category-height-mobile);
+    }
+  }
+
+  &__img {
+    flex: 0 0 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: fit-content;
+
+    img {
+      scale: 0.85;
+
+      @include tablet {
+        scale: 0.65;
+      }
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border: none;
+    caret-color: transparent;
+    @include fluid-text(100, 50);
+
+    &::placeholder {
+      color: var(--color-light);
+      animation: blink-placeholder 1s step-start infinite;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  &__fake-placeholder {
+    position: absolute;
+    color: var(--color-gray-60);
+    animation: blink-placeholder 1.2s step-end infinite;
+    pointer-events: none;
+    user-select: none;
+    @include abs-center;
+    @include fluid-text(100, 50);
+  }
+
+  &__btn {
+    flex: 0 0 20%;
+    padding-block: rem(30);
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    cursor: pointer;
+    transition: var(--transition-duration);
+
+    @include mobile {
+      @include fluid-text(30, 14);
+      border: none;
+      padding-block: rem(20);
+    }
+
+    &:hover {
+      background-color: var(--color-gray-60);
+    }
+  }
+}
+
+@keyframes blink-placeholder {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

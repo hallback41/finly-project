@@ -1,0 +1,19 @@
+@use "../helpers" as *;
+
+:root[data-theme="fantasy"] {
+  // Цвета
+  --color-background: #141414;
+  --color-text: #fdfdfe;
+  --color-text-overlay: #070707;
+  --color-border: #ffd11a;
+
+  // Бордеры
+  --categorie-border-radius: 5px;
+  --categorie-border-style: solid;
+  --category-border-height: #{rem(5)};
+  --category-border-color: var(--color-border);
+  --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+
+  // Шрифт
+  --font-family-them: "UncialAntiqua-Regular", sans-serif;
+}

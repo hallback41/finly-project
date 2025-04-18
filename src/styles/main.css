@@ -1,0 +1,570 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+   Убираем внутренние отступы слева тегам списков,
+   у которых есть атрибут class
+  */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+   Убираем внешние отступы body и двум другим тегам,
+   у которых есть атрибут class
+  */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+   Убираем внешние отступы вертикали нужным тегам,
+   у которых есть атрибут class
+  */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+   Убираем стандартный маркер маркированному списку,
+   у которого есть атрибут class
+  */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+   Обнуляем вертикальные внешние отступы параграфа,
+   объявляем локальную переменную для внешнего отступа вниз,
+   чтобы избежать взаимодействие с более сложным селектором
+  */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+   Внешний отступ вниз для параграфа без атрибута class,
+   который расположен не последним среди своих соседних элементов
+  */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+   Упрощаем работу с изображениями и видео
+  */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+   Наследуем свойства шрифт для полей ввода
+  */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+  height: 100%;
+  /**
+     Убираем скачок интерфейса по горизонтали
+     при появлении / исчезновении скроллбара
+    */
+  scrollbar-gutter: stable;
+}
+
+/**
+   Плавный скролл
+  */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+  min-height: 100%;
+  /**
+     Унифицированный интерлиньяж
+    */
+  line-height: 1.5;
+}
+
+/**
+   Нормализация высоты элемента ссылки при его инспектировании в DevTools
+  */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+   Курсор-рука при наведении на элемент
+  */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+   Приводим к единому цвету svg-элементы
+  */
+[fill] {
+  fill: currentColor;
+}
+
+[stroke] {
+  stroke: currentColor;
+}
+
+/**
+   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+  */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+   Удаляем все анимации и переходы для людей,
+   которые предпочитают их не использовать
+  */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "OpenSans-Bold";
+  src: url("../fonts/OpenSans_SemiCondensed-Bold.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url("../fonts/OpenSans_SemiCondensed-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "OpenSans-Italic";
+  src: url("../assets/fonts/OpenSans-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Monocraft";
+  src: url("../assets/fonts/Monocraft.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "UncialAntiqua-Regular";
+  src: url("../assets/fonts/UncialAntiqua-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SF-Pro-Display-Light";
+  src: url("../assets/fonts/SF-Pro-Display-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
+:root[data-theme=pixel] {
+  --color-text: #fdfdfe;
+  --color-text-overlay: #070707;
+  --color-border: linear-gradient(135deg, #fbfefe, #f5d697);
+  --font-family-base: "Monocraft", sans-serif;
+  --categorie-border-style: solid;
+  --category-border-height: 0.3125rem;
+  --category-border-color: rgb(252, 251, 251);
+  --category-border-radius: none;
+  --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+}
+
+:root[data-theme=cyberpunk] {
+  --font-family-them: "Monocraft", sans-serif;
+  --color-text: #fdfdfe;
+  --color-text-overlay: #070707;
+  --color-border: linear-gradient(135deg, #00ffff, #ff00ff);
+  --categorie-border-radius: 5px;
+  --categorie-border-style: solid;
+  --category-border-height: 0.3125rem;
+  --category-border-color: rgb(252, 251, 251);
+  --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --categorie-glitch-enabled: 1;
+}
+
+:root[data-theme=cyberpunk] .glitch-top,
+:root[data-theme=cyberpunk] .glitch-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.9;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+:root[data-theme=cyberpunk] .glitch-top {
+  -webkit-clip-path: inset(0 0 50% 0);
+          clip-path: inset(0 0 50% 0);
+  color: #00ffff;
+  animation: glitchTopFullCycle 8s infinite steps(1, end);
+}
+
+:root[data-theme=cyberpunk] .glitch-bottom {
+  -webkit-clip-path: inset(50% 0 0 0);
+          clip-path: inset(50% 0 0 0);
+  color: #ff00ff;
+  animation: glitchBottomFullCycle 5s infinite steps(1, end);
+}
+
+@keyframes glitchTopFullCycle {
+  0%, 20%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-3px, -1px);
+  }
+  30% {
+    transform: translate(3px, -1px);
+  }
+  50% {
+    transform: translate(-5px, -1px);
+  }
+  70% {
+    transform: translate(5px, -1px);
+  }
+}
+@keyframes glitchBottomFullCycle {
+  0%, 20%, 100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(3px, 1px);
+  }
+  30% {
+    transform: translate(-3px, 1px);
+  }
+  50% {
+    transform: translate(-3px, 1px);
+  }
+  70% {
+    transform: translate(3px, 1px);
+  }
+}
+:root[data-theme=cyberpunk] .categorie__logo::before,
+:root[data-theme=cyberpunk] .categorie__logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.8;
+  background-image: var(--logo-url);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  mix-blend-mode: screen;
+}
+
+:root[data-theme=cyberpunk] .categorie__logo::before {
+  -webkit-clip-path: inset(0 0 50% 0);
+          clip-path: inset(0 0 50% 0);
+  animation: glitchTopFullCycle 4s infinite steps(1, end);
+}
+
+:root[data-theme=cyberpunk] .categorie__logo::after {
+  -webkit-clip-path: inset(50% 0 0 0);
+          clip-path: inset(50% 0 0 0);
+  animation: glitchBottomFullCycle 4s infinite steps(1, end);
+}
+
+:root[data-theme=fantasy] {
+  --color-background: #141414;
+  --color-text: #fdfdfe;
+  --color-text-overlay: #070707;
+  --color-border: #ffd11a;
+  --categorie-border-radius: 5px;
+  --categorie-border-style: solid;
+  --category-border-height: 0.3125rem;
+  --category-border-color: var(--color-border);
+  --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --font-family-them: "UncialAntiqua-Regular", sans-serif;
+}
+
+:root[data-theme=ios] {
+  --color-text: #fcfafa;
+  --color-text-overlay: black;
+  --color-border: none;
+  --categorie-border-radius: 2rem;
+  --categorie-border-style: solid;
+  --category-border-height: 0.3125rem;
+  --category-border-color: transparent;
+  --border-radius-theme: 1rem;
+  --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --font-family-them: "SF-Pro-Display-Light", sans-serif;
+}
+
+:root[data-theme=iosDark] {
+  --color-text: #000000;
+  --color-text-overlay: rgb(255, 255, 255);
+  --color-border: none;
+  --categorie-border-radius: 2rem;
+  --categorie-border-style: solid;
+  --category-border-height: 0.3125rem;
+  --category-border-color: transparent;
+  --border-radius-theme: 1rem;
+  --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --font-family-them: "SF-Pro-Display-Light", sans-serif;
+}
+
+:root {
+  --color-light: #ffffff;
+  --color-dark: #020202;
+  --color-dark-10: #1a1a1a;
+  --color-dark-15: #262626;
+  --color-dark-20: #333333;
+  --color-dark-40: #666666;
+  --color-gray-50: #7e7e81;
+  --color-gray-60: #98989a;
+  --color-accent: #ffd11a;
+  --color-red: #ff5500;
+  --font-family-base: "Monocraft", sans-serif;
+  --font-family-accent: "OpenSans-Italic", sans-serif;
+  --font-family-fantasy-them: "UncialAntiqua-Regular", sans-serif;
+  --container-width: 100rem;
+  --container-padding-x: 1rem;
+  --transition-duration: 0.2s;
+  --category-height-desktop: 12.5rem;
+  --category-height-laptop: 10.625rem;
+  --category-height-mobile: 9.375rem;
+  --food-gradient-1: #d47c38;
+  --food-gradient-2: #8b6d44;
+  --home-gradient-1: #8b6d44;
+  --home-gradient-2: #bca98a;
+  --medicine-gradient-1: #5a97ca;
+  --medicine-gradient-2: #99c7f4;
+  --fun-gradient-1: #d8a33d;
+  --fun-gradient-2: #ffc278;
+  --clothes-gradient-1: #ab4d4d;
+  --clothes-gradient-2: #e37e7e;
+  --hobby-gradient-1: #8d52a1;
+  --hobby-gradient-2: #c490db;
+  --pets-gradient-1: #c96a45;
+  --pets-gradient-2: #f79c74;
+  --restaurant-gradient-1: #c3a549;
+  --restaurant-gradient-2: #ffe07c;
+  --sport-gradient-1: #7cc26e;
+  --sport-gradient-2: #ade9a0;
+  --credits-gradient-1: #5e4230;
+  --credits-gradient-2: #a6774f;
+  --internet-gradient-1: #68a2c8;
+  --internet-gradient-2: #a3d0eb;
+  --personal-gradient-1: #ff9800;
+  --personal-gradient-2: #4caf50;
+  --car-gradient-1: #ad5757;
+  --car-gradient-2: #dc8888;
+  --savings-gradient-1: #dcd269;
+  --savings-gradient-2: #f8f5a8;
+}
+@media (width <= 90.06125rem) {
+  :root {
+    --container-width: 80rem;
+  }
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (width <= 47.99875rem) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (width > 47.99875rem) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+body {
+  font-size: clamp(1.5rem, 1.5955882353rem + -0.3921568627vw, 1.125rem);
+  font-family: var(--font-family-base);
+  letter-spacing: -0.03em;
+  color: var(--color-gray-50);
+  background-color: var(--color-dark);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  color: var(--color-light);
+  font-weight: 500;
+}
+
+h1,
+.h1 {
+  font-size: clamp(1.875rem, 1.237745098rem + 2.614379085vw, 4.375rem);
+  line-height: 1.2;
+}
+
+h2,
+.h2 {
+  font-size: clamp(1.75rem, 1.2720588235rem + 1.9607843137vw, 3.625rem);
+  line-height: 1.3;
+}
+
+h3,
+.h3 {
+  font-size: clamp(1.5rem, 1.2450980392rem + 1.045751634vw, 2.5rem);
+}
+
+h4,
+.h4 {
+  font-size: clamp(1.125rem, 0.9975490196rem + 0.522875817vw, 1.625rem);
+}
+
+h5,
+.h5 {
+  font-size: clamp(1.125rem, 1.0294117647rem + 0.3921568627vw, 1.5rem);
+}
+
+h6,
+.h6 {
+  font-size: clamp(1rem, 0.9362745098rem + 0.2614379085vw, 1.25rem);
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  color: inherit;
+}
+@media (any-hover: hover) {
+  a:hover {
+    color: var(--color-accent);
+  }
+}
+@media (any-hover: none) {
+  a:active {
+    color: var(--color-accent);
+  }
+}
+a[class] {
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 0.125rem dashed var(--color-light);
+  outline-offset: 0.25rem;
+  transition-duration: 0s !important;
+}/*# sourceMappingURL=main.css.map */

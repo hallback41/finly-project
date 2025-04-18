@@ -1,0 +1,58 @@
+$categories: (
+  food: (
+    var(--food-gradient-1),
+    var(--food-gradient-2),
+  ),
+  home: (
+    var(--home-gradient-1),
+    var(--home-gradient-2),
+  ),
+  medicine: (
+    var(--medicine-gradient-1),
+    var(--medicine-gradient-2),
+  ),
+  fun: (
+    var(--fun-gradient-1),
+    var(--fun-gradient-2),
+  ),
+  clothes: (
+    var(--clothes-gradient-1),
+    var(--clothes-gradient-2),
+  ),
+  hobby: (
+    var(--hobby-gradient-1),
+    var(--hobby-gradient-2),
+  ),
+  pets: (
+    var(--pets-gradient-1),
+    var(--pets-gradient-2),
+  ),
+  restaurant: (
+    var(--restaurant-gradient-1),
+    var(--restaurant-gradient-2),
+  ),
+  sport: (
+    var(--sport-gradient-1),
+    var(--sport-gradient-2),
+  ),
+  credits: (
+    var(--credits-gradient-1),
+    var(--credits-gradient-2),
+  ),
+  internet: (
+    var(--internet-gradient-1),
+    var(--internet-gradient-2),
+  ),
+  personal: (
+    var(--personal-gradient-1),
+    var(--personal-gradient-2),
+  ),
+  car: (
+    var(--car-gradient-1),
+    var(--car-gradient-2),
+  ),
+  savings: (
+    var(--savings-gradient-1),
+    var(--savings-gradient-2),
+  ),
+);

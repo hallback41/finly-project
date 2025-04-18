@@ -1,0 +1,32 @@
+@use "../../styles/helpers/" as *;
+
+.categories {
+  position: relative;
+  overflow: hidden;
+  padding-block: rem(20);
+  transition: filter 0.3s ease;
+
+  &__bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__list {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(20);
+    z-index: 1;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: rem(5);
+    }
+  }
+}
