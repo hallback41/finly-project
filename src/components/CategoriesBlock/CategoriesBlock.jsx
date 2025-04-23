@@ -1,5 +1,5 @@
 import styles from "./CategoriesBlock.module.scss";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Categorie from "./Categorie";
 import { useTheme } from "@/context/ThemeContext";
 import ThemeVideoBackground from "./ThemeVideoBackground";
@@ -8,9 +8,9 @@ const CategoriesBlock = ({ categoriesData }) => {
   const [activeId, setActiveId] = useState(null);
   const { currentTheme } = useTheme();
 
-  const handleActivate = (id) => {
+  const handleActivate = useCallback((id) => {
     setActiveId(id);
-  };
+  }, []);
 
   return (
     <section className={`${styles.categories} container`}>
