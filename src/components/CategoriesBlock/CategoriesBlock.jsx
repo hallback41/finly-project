@@ -2,6 +2,7 @@ import styles from "./CategoriesBlock.module.scss";
 import React, { useState } from "react";
 import Categorie from "./Categorie";
 import { useTheme } from "@/context/ThemeContext";
+import ThemeVideoBackground from "./ThemeVideoBackground";
 
 const CategoriesBlock = ({ categoriesData }) => {
   const [activeId, setActiveId] = useState(null);
@@ -13,16 +14,7 @@ const CategoriesBlock = ({ categoriesData }) => {
 
   return (
     <section className={`${styles.categories} container`}>
-      {currentTheme === "ios" && (
-        <video className={styles["categories__bg-video"]} autoPlay loop muted playsInline preload="auto">
-          <source src="/public/videos/ios-bg.mp4" type="video/mp4" />
-        </video>
-      )}
-      {currentTheme === "iosDark" && (
-        <video className={styles["categories__bg-video"]} autoPlay loop muted playsInline preload="auto">
-          <source src="/public/videos/ios-bg-dark.mp4" type="video/mp4" />
-        </video>
-      )}
+      <ThemeVideoBackground theme={currentTheme} />
 
       <ul className={styles["categories__list"]}>
         {categoriesData.map(({ id, name }) => (

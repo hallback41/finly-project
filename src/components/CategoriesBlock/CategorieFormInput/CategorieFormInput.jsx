@@ -44,6 +44,13 @@ const CategorieFormInput = ({ name, id, onSubmit, setHasError }) => {
             pattern="[0-9]*"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
+            onWheel={(e) => e.target.blur()}
+            onKeyDown={(e) => {
+              const invalidChars = ["e", "E", "+", "-", ","];
+              if (invalidChars.includes(e.key)) {
+                e.preventDefault();
+              }
+            }}
           />
           {amount === "" && <span className={styles["form__fake-placeholder"]}>?</span>}
         </div>

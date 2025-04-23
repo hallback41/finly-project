@@ -6,8 +6,21 @@ import { useTheme } from "../../../context/ThemeContext";
 import { AnimatePresence } from "framer-motion";
 import FadeSlideIn from "../../UI/motion";
 import backgrounds from "@/utils/getCategoryBackgrounds";
+import CategorieLogo from "./CategorieLogo";
+import CategoryTitle from "./CategoryTitle";
 
-const Categorie = ({ name, id, isEditing, onActivate, shouldPulse }) => {
+const getClassNames = ({ id, hasError, isEditing }) => {
+  return [
+    styles.categorie,
+    styles[`categorie--${id}`],
+    hasError && styles["categorie--error"],
+    isEditing && styles["categorie--active"],
+  ]
+    .filter(Boolean)
+    .join(" ");
+};
+
+const Categorie = ({ name, id, isEditing, onActivate }) => {
   const [hasError, setHasError] = useState(false);
   const { currentTheme } = useTheme();
   const icon = allIcons?.[currentTheme]?.[id];
@@ -25,52 +38,16 @@ const Categorie = ({ name, id, isEditing, onActivate, shouldPulse }) => {
     onActivate(id);
   };
 
-  const classNames = [
-    styles.categorie,
-    styles[`categorie--${id}`],
-    hasError && styles["categorie--error"],
-    isEditing && styles["categorie--active"],
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   return (
     <li
       onClick={handleClick}
-      className={`categorie ${classNames}`}
+      className={`categorie ${getClassNames({ id, hasError, isEditing })}`}
       style={{ backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined }}
     >
       <div className={styles["categorie__wrapper"]}>
-        <div
-          className={styles["categorie__logo"]}
-          style={
-            currentTheme === "cyberpunk"
-              ? {
-                  backgroundImage: `url(${icon})`,
-                  "--logo-url": `url(${icon})`,
-                }
-              : undefined
-          }
-        >
-          <img className={styles["categorie__logo-img"]} src={icon} alt={id} />
-        </div>
+        <CategorieLogo theme={currentTheme} icon={icon} id={id} />
 
-        <div className={styles["categorie__title"]}>
-          <h3 className={styles["categorie__title-text"]}>
-            {name}
-            {currentTheme === "cyberpunk" && (
-              <>
-                <span className="glitch-top" aria-hidden="true">
-                  {name}
-                </span>
-                <span className="glitch-bottom" aria-hidden="true">
-                  {name}
-                </span>
-              </>
-            )}
-          </h3>
-          <h3 className={styles["categorie__title-text-overlay"]}>{name}</h3>
-        </div>
+        <CategoryTitle name={name} theme={currentTheme} />
       </div>
 
       <AnimatePresence>
