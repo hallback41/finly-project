@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "./CategorieFormInput.module.scss";
 import allIcons from "../../../utils/getCategoryIcon";
 import { useTheme } from "../../../context/ThemeContext";
@@ -14,19 +14,22 @@ const CategorieFormInput = ({ name, id, onSubmit, setHasError }) => {
     inputRef.current?.focus();
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const numericValue = Number(amount);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const numericValue = Number(amount);
 
-    if (!amount || isNaN(numericValue)) {
-      setHasError(true);
-      setTimeout(() => setHasError(false), 300);
-      return;
-    }
+      if (!amount || isNaN(numericValue)) {
+        setHasError(true);
+        setTimeout(() => setHasError(false), 300);
+        return;
+      }
 
-    onSubmit(numericValue);
-    setAmount("");
-  };
+      onSubmit(numericValue);
+      setAmount("");
+    },
+    [amount, onSubmit, setHasError]
+  );
 
   return (
     <div className={styles["form__wrapper"]}>
