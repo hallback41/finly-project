@@ -53,7 +53,7 @@ const Categorie = ({ name, id, isEditing, onActivate }) => {
       <AnimatePresence>
         {isEditing && (
           <FadeSlideIn className={styles["categorie__form"]} direction="top" duration={0.3} trigger={id}>
-            <CategorieFormInput name={name} id={id} onSubmit={handleSubmit} setHasError={setHasError} />
+            <CategorieFormInput name={name} id={id} setHasError={setHasError} />
           </FadeSlideIn>
         )}
       </AnimatePresence>

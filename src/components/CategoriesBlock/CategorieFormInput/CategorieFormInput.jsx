@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "./CategorieFormInput.module.scss";
 import allIcons from "../../../utils/getCategoryIcon";
 import { useTheme } from "../../../context/ThemeContext";
+import { useDatabase } from "../../../context/DataBaseContext";
 
-const CategorieFormInput = ({ name, id, onSubmit, setHasError }) => {
+const CategorieFormInput = ({ name, id, setHasError }) => {
   const [amount, setAmount] = useState("");
   const inputRef = useRef(null);
   const { currentTheme } = useTheme();
+  const { updateCategorie, categories } = useDatabase();
 
   const icon = allIcons?.[currentTheme]?.[id];
 
@@ -25,10 +27,23 @@ const CategorieFormInput = ({ name, id, onSubmit, setHasError }) => {
         return;
       }
 
-      onSubmit(numericValue);
+      const currentCategorie = categories.find((cat) => cat.id === id);
+      const newExpense = {
+        amount: numericValue,
+        date: new Date().toISOString(),
+      };
+
+      console.log("adding expence:", categories);
+
+      updateCategorie(id, {
+        expenses: [...currentCategorie.expenses, newExpense],
+      });
+
+      console.log(`Categ. "${name}" updated`);
+
       setAmount("");
     },
-    [amount, onSubmit, setHasError]
+    [amount, setHasError, updateCategorie, categories, id]
   );
 
   return (
