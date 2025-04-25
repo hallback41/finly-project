@@ -1,5 +1,5 @@
 import styles from "./Categorie.module.scss";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import CategorieFormInput from "../CategorieFormInput";
 import allIcons from "../../../utils/getCategoryIcon";
 import { useTheme } from "../../../context/ThemeContext";
@@ -23,8 +23,8 @@ const getClassNames = ({ id, hasError, isEditing }) => {
 const Categorie = ({ name, id, isEditing, onActivate }) => {
   const [hasError, setHasError] = useState(false);
   const { currentTheme } = useTheme();
-  const icon = allIcons?.[currentTheme]?.[id];
-  const backgroundImage = backgrounds?.[currentTheme]?.[id];
+  const icon = useMemo(() => allIcons?.[currentTheme]?.[id]);
+  const backgroundImage = useMemo(() => backgrounds?.[currentTheme]?.[id]);
 
   const handleSubmit = (amount) => {
     console.log("added to category", id, amount);
