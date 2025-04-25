@@ -3,7 +3,7 @@ import React from "react";
 import { useTheme } from "@/context/ThemeContext";
 import styles from "./ThemeSelector.module.scss";
 
-const themes = ["pixel", "cyberpunk", "fantasy", "ios", "iosDark"];
+const themes = ["pixel", "cyberpunk", "fantasy", "ios", "iosDark", "iosAuto"];
 
 const ThemeSelector = () => {
   const { currentTheme, setCurrentTheme } = useTheme();

@@ -23,6 +23,7 @@ const getClassNames = ({ id, hasError, isEditing }) => {
 const Categorie = ({ name, id, isEditing, onActivate }) => {
   const [hasError, setHasError] = useState(false);
   const { currentTheme } = useTheme();
+
   const icon = useMemo(() => allIcons?.[currentTheme]?.[id]);
   const backgroundImage = useMemo(() => backgrounds?.[currentTheme]?.[id]);
 
