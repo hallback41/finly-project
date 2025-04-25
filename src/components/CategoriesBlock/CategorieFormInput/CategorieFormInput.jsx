@@ -4,7 +4,7 @@ import allIcons from "../../../utils/getCategoryIcon";
 import { useTheme } from "../../../context/ThemeContext";
 import { useDatabase } from "../../../context/DataBaseContext";
 
-const CategorieFormInput = ({ name, id, setHasError }) => {
+const CategorieFormInput = ({ name, id, setHasError, onSuccess }) => {
   const [amount, setAmount] = useState("");
   const inputRef = useRef(null);
   const { currentTheme } = useTheme();
@@ -42,6 +42,7 @@ const CategorieFormInput = ({ name, id, setHasError }) => {
       console.log(`Categ. "${name}" updated`);
 
       setAmount("");
+      onSuccess();
     },
     [amount, setHasError, updateCategorie, categories, id]
   );

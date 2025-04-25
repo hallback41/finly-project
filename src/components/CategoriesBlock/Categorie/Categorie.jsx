@@ -27,11 +27,6 @@ const Categorie = ({ name, id, isEditing, onActivate }) => {
   const icon = useMemo(() => allIcons?.[currentTheme]?.[id]);
   const backgroundImage = useMemo(() => backgrounds?.[currentTheme]?.[id]);
 
-  const handleSubmit = (amount) => {
-    console.log("added to category", id, amount);
-    onActivate(null);
-  };
-
   const handleClick = (e) => {
     const clickedInsideForm = e.target.closest(`.${styles["categorie__form"]}`);
     if (clickedInsideForm) return;
@@ -54,7 +49,7 @@ const Categorie = ({ name, id, isEditing, onActivate }) => {
       <AnimatePresence>
         {isEditing && (
           <FadeSlideIn className={styles["categorie__form"]} direction="top" duration={0.3} trigger={id}>
-            <CategorieFormInput name={name} id={id} setHasError={setHasError} />
+            <CategorieFormInput name={name} id={id} setHasError={setHasError} onSuccess={() => onActivate(null)} />
           </FadeSlideIn>
         )}
       </AnimatePresence>

@@ -66,8 +66,7 @@
 
   &--error {
     animation: shake 0.3s ease;
-    border: rem(5) solid var(--color-red);
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, --color-border 0.3s ease;
   }
 
   &__logo {
