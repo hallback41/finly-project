@@ -4,13 +4,15 @@ import categoriesData from "./components/categoriesData/categoriesData";
 import CategoriesBlock from "./components/CategoriesBlock";
 import { ThemeProvider } from "./context/ThemeContext";
 import ThemeSelector from "./components/ThemeSelector";
+import StatisticsBlock from "./components/Statistics/StatisticsBlock";
 
 function App() {
   return (
     <ThemeProvider>
       <ThemeSelector />
       <React.Fragment>
-        <CategoriesBlock categoriesData={categoriesData} />
+        {/* <CategoriesBlock categoriesData={categoriesData} /> */}
+        <StatisticsBlock />
       </React.Fragment>
     </ThemeProvider>
   );
