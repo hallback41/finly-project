@@ -11,7 +11,7 @@ function App() {
     <ThemeProvider>
       <ThemeSelector />
       <React.Fragment>
-        {/* <CategoriesBlock categoriesData={categoriesData} /> */}
+        <CategoriesBlock categoriesData={categoriesData} />
         <StatisticsBlock />
       </React.Fragment>
     </ThemeProvider>

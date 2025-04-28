@@ -1,13 +1,13 @@
-import Chart from "./ChartsBlock/Chart/Chart";
+import PolarBarChart from "./ChartsBlock/Chart/PolarBarChart ";
 import styles from "./StatisticsBlock.module.scss";
-import react from "react";
+import React from "react";
 
 const StatisticsBlock = () => {
   return (
-    <React.Fragment>
-      <Chart />
-    </React.Fragment>
+    <div className={`${styles.statistics} container`}>
+      <PolarBarChart />
+    </div>
   );
 };
 
-export default ChartsBlock;
+export default StatisticsBlock;
