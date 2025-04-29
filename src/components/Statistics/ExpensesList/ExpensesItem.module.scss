@@ -1,0 +1,35 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: rgba(255, 255, 255, 0.05); // лёгкий фон для элемента
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--color-text, #fff);
+  backdrop-filter: blur(6px); // эффект лёгкого размытия за элементом
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.date {
+  flex: 1;
+  font-weight: 500;
+  color: var(--color-text-secondary, #aaa);
+}
+
+.category {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.amount {
+  flex: 0;
+  font-weight: 700;
+  color: var(--color-accent, #00ffaa);
+}

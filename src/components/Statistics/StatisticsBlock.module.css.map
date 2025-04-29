@@ -1,1 +1,1 @@
-{"version":3,"sources":["StatisticsBlock.module.scss","StatisticsBlock.module.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,sBAAA;EACA,SAAA;ACCF","file":"StatisticsBlock.module.css"}
+{"version":3,"sources":["StatisticsBlock.module.scss","StatisticsBlock.module.css"],"names":[],"mappings":"AAAA;EACE,kBAAA;EACA,gBAAA;ACCF;ADCE;EACE,kBAAA;EACA,QAAA;EACA,UAAA;ACCJ;ADCI;EACE,WAAA;EACA,YAAA;EACA,oBAAA;KAAA,iBAAA;ACCN;ADGE;EACE,kBAAA;EACA,QAAA;EACA,mCAAA;UAAA,2BAAA;EACA,UAAA;ACDJ;ADIE;EACE,kBAAA;EACA,UAAA;ACFJ","file":"StatisticsBlock.module.css"}

@@ -29,6 +29,7 @@ const CategorieFormInput = ({ name, id, setHasError, onSuccess }) => {
 
       const currentCategorie = categories.find((cat) => cat.id === id);
       const newExpense = {
+        id: crypto.randomUUID(),
         amount: numericValue,
         date: new Date().toISOString(),
       };

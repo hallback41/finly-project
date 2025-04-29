@@ -15,8 +15,20 @@ export const DatabaseProvider = ({ children }) => {
     setCategories(categoriesData);
   };
 
+  const removeExpenseFromCategory = (parentId, expenseId) => {
+    setCategories((prev) =>
+      prev.map((cat) => {
+        if (cat.id !== parentId) return cat;
+        return {
+          ...cat,
+          expenses: cat.expenses.filter((exp) => exp.id !== expenseId),
+        };
+      })
+    );
+  };
+
   return (
-    <DatabaseContext.Provider value={{ categories, updateCategorie, resetCategories }}>
+    <DatabaseContext.Provider value={{ categories, updateCategorie, resetCategories, removeExpenseFromCategory }}>
       {children}
     </DatabaseContext.Provider>
   );

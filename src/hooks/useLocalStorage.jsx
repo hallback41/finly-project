@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
@@ -6,7 +6,7 @@ const useLocalStorage = (key, initialValue) => {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.log("Error of reading localStorage :", error);
+      console.log("Error reading localStorage:", error);
       return initialValue;
     }
   });
@@ -15,7 +15,7 @@ const useLocalStorage = (key, initialValue) => {
     try {
       localStorage.setItem(key, JSON.stringify(storedValue));
     } catch (error) {
-      console.log("Error writing into localStorage:", error);
+      console.log("Error writing to localStorage:", error);
     }
   }, [key, storedValue]);
 
