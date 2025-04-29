@@ -97,7 +97,7 @@ const PolarBarChart = () => {
     };
   }, [categories]);
 
-  return <div ref={chartRef} className={styles.chart} style={{ width: "100%", height: "1000px" }}></div>;
+  return <div ref={chartRef} className={styles.chart}></div>;
 };
 
 export default PolarBarChart;
