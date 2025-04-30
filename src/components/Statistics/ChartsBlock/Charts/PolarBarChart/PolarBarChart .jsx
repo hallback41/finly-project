@@ -1,41 +1,38 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useMemo, useCallback } from "react";
 import * as echarts from "echarts";
 import styles from "./PolarBarChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
+import { getCategorySums } from "@/utils/getCategorySums";
+import useEChart from "@/hooks/useECharts";
 
 const PolarBarChart = () => {
   const chartRef = useRef(null);
   const { categories } = useDatabase();
 
-  useEffect(() => {
-    if (!chartRef.current) return;
+  const getColor = useCallback((varName) => {
+    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  }, []);
 
-    if (echarts.getInstanceByDom(chartRef.current)) {
-      echarts.dispose(chartRef.current);
-    }
+  const categorySums = useMemo(() => getCategorySums(categories), [categories]);
 
-    const myChart = echarts.init(chartRef.current);
+  const maxSum = useMemo(() => {
+    return Math.max(...categorySums.map((cat) => cat.sum)) || 1;
+  }, [categorySums]);
 
-    const getColor = (varName) => getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  const categoryNames = useMemo(() => categorySums.map((cat) => cat.name), [categorySums]);
 
-    const categoryNames = categories.map((cat) => cat.name);
-    const categorySums = categories.map((cat) => cat.expenses.reduce((sum, exp) => sum + exp.amount, 0));
-
-    const maxSum = Math.max(...categorySums) || 1;
+  const data = useMemo(() => {
     const MIN_PERCENT = 0.055;
-
-    const data = categories.map((category) => {
-      const sum = category.expenses.reduce((acc, exp) => acc + exp.amount, 0);
-      const value = sum < maxSum * MIN_PERCENT ? maxSum * MIN_PERCENT : sum;
-
+    return categorySums.map((cat) => {
+      const value = cat.sum < maxSum * MIN_PERCENT ? maxSum * MIN_PERCENT : cat.sum;
       return {
         value,
-        realValue: sum,
-        name: category.name,
+        realValue: cat.sum,
+        name: cat.name,
         itemStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 1, 1, [
-            { offset: 0, color: getColor(`--${category.id}-gradient-1`) },
-            { offset: 1, color: getColor(`--${category.id}-gradient-2`) },
+            { offset: 0, color: getColor(`--${cat.id}-gradient-1`) },
+            { offset: 1, color: getColor(`--${cat.id}-gradient-2`) },
           ]),
           borderColor: "rgba(24, 19, 19, 0.49)",
           borderWidth: 3,
@@ -43,10 +40,14 @@ const PolarBarChart = () => {
         },
       };
     });
+  }, [categorySums, getColor, maxSum]);
 
-    const option = {
+  // ✅ вызываем useEChart правильно: (ref, getOptionFn, deps)
+  useEChart(
+    chartRef,
+    () => ({
       title: { text: "" },
-      polar: { radius: [30, "80%"] },
+      polar: { radius: [1, "95%"] },
       angleAxis: {
         max: maxSum,
         startAngle: 90,
@@ -67,7 +68,7 @@ const PolarBarChart = () => {
       series: [
         {
           type: "bar",
-          data: categories.map(() => maxSum),
+          data: categorySums.map(() => maxSum),
           coordinateSystem: "polar",
           roundCap: true,
           barWidth: 1,
@@ -79,7 +80,7 @@ const PolarBarChart = () => {
         },
         {
           type: "bar",
-          data: data,
+          data,
           coordinateSystem: "polar",
           roundCap: true,
           barWidth: 150,
@@ -102,16 +103,11 @@ const PolarBarChart = () => {
           z: 2,
         },
       ],
-    };
+    }),
+    [categorySums, categoryNames, maxSum, data]
+  );
 
-    myChart.setOption(option);
-
-    return () => {
-      myChart.dispose();
-    };
-  }, [categories]);
-
-  return <div ref={chartRef} className={styles.chart}></div>;
+  return <div ref={chartRef} className={styles.chart} />;
 };
 
 export default PolarBarChart;

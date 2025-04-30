@@ -10,9 +10,9 @@ const ExpensesList = () => {
     return categories
       .flatMap((cat) =>
         cat.expenses.map((exp) => ({
-          ...exp, // теперь есть id, amount, date
-          categoryId: cat.id, // для удаления
-          categoryName: cat.name, // для отображения
+          ...exp,
+          categoryId: cat.id,
+          categoryName: cat.name,
         }))
       )
       .sort((a, b) => new Date(b.date) - new Date(a.date));

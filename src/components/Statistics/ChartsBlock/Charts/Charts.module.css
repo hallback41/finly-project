@@ -1,0 +1,15 @@
+.charts-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 1700px;
+  list-style: none;
+}
+.charts-list__item {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=Charts.module.css.map */

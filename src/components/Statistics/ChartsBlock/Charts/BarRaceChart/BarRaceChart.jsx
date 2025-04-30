@@ -1,29 +1,45 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo, useCallback } from "react";
 import * as echarts from "echarts";
-import styles from "./BarRaceChart.module.css";
+import styles from "./BarRaceChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
+import { getCategorySums } from "@/utils/getCategorySums";
 
 const BarRaceChart = () => {
   const chartRef = useRef(null);
   const { categories } = useDatabase();
 
+  const getColor = useCallback((varName) => {
+    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  }, []);
+
+  const categorySums = useMemo(() => {
+    return getCategorySums(categories).sort((a, b) => b.sum - a.sum);
+  }, [categories]);
+
+  const backgroundData = useMemo(() => {
+    const maxSum = Math.max(...categorySums.map((c) => c.sum)) || 1;
+    return categorySums.map(() => maxSum);
+  }, [categorySums]);
+
+  const barData = useMemo(() => {
+    return categorySums.map((cat) => ({
+      value: cat.sum,
+      itemStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+          { offset: 0, color: getColor(`--${cat.id}-gradient-1`) },
+          { offset: 1, color: getColor(`--${cat.id}-gradient-2`) },
+        ]),
+        borderRadius: 16,
+      },
+    }));
+  }, [categorySums, getColor]);
+
+  const categoryNames = useMemo(() => categorySums.map((cat) => cat.name), [categorySums]);
+
   useEffect(() => {
     if (!chartRef.current) return;
 
-    if (echarts.getInstanceByDom(chartRef.current)) {
-      echarts.dispose(chartRef.current);
-    }
-
     const myChart = echarts.init(chartRef.current);
-
-    const getColor = (varName) => getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-
-    const sortedCategories = [...categories]
-      .map((cat) => ({
-        ...cat,
-        sum: cat.expenses.reduce((sum, exp) => sum + exp.amount, 0),
-      }))
-      .sort((a, b) => b.sum - a.sum);
 
     const option = {
       xAxis: {
@@ -32,7 +48,7 @@ const BarRaceChart = () => {
       },
       yAxis: {
         type: "category",
-        data: sortedCategories.map((cat) => cat.name),
+        data: categoryNames,
         inverse: true,
         axisLine: { show: false },
         axisTick: { show: false },
@@ -40,31 +56,20 @@ const BarRaceChart = () => {
       },
       series: [
         {
-          // Фоновые белые полоски
           type: "bar",
-          data: sortedCategories.map(() => Math.max(...sortedCategories.map((c) => c.sum))),
+          data: backgroundData,
           barWidth: 50,
           itemStyle: {
-            color: "rgba(255,255,255,0.2)", // Полупрозрачный белый
-            borderRadius: 16, // скруглить, если хочешь
+            color: "rgba(255,255,255,0.2)",
+            borderRadius: 16,
           },
           silent: true,
-          barGap: "-100%", // Наложение на следующее
+          barGap: "-100%",
           z: 1,
         },
         {
-          // Основные цветные полоски
           type: "bar",
-          data: sortedCategories.map((cat) => ({
-            value: cat.sum,
-            itemStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                { offset: 0, color: getColor(`--${cat.id}-gradient-1`) },
-                { offset: 1, color: getColor(`--${cat.id}-gradient-2`) },
-              ]),
-              borderRadius: 16, // ✅ скругляем углы цветных полос!
-            },
-          })),
+          data: barData,
           barWidth: 50,
           label: {
             show: true,
@@ -86,20 +91,22 @@ const BarRaceChart = () => {
         },
       ],
       grid: {
-        top: 10,
-        bottom: 10,
-        left: 100,
+        top: 30,
+        bottom: 30,
+        left: 30,
         right: 30,
       },
       animationDurationUpdate: 500,
     };
 
     myChart.setOption(option);
+    window.addEventListener("resize", myChart.resize);
 
     return () => {
+      window.removeEventListener("resize", myChart.resize);
       myChart.dispose();
     };
-  }, [categories]); // <-- теперь обновление ТОЛЬКО когда меняются категории
+  }, [barData, backgroundData, categoryNames]);
 
   return <div ref={chartRef} className={styles.chart} style={{ width: "100%", height: "800px" }}></div>;
 };
