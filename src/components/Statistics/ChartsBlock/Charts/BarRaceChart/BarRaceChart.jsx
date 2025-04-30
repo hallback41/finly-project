@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useMemo, useCallback } from "react";
+import React, { useRef, useMemo, useCallback } from "react";
 import * as echarts from "echarts";
 import styles from "./BarRaceChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
 import { getCategorySums } from "@/utils/getCategorySums";
+import useEChart from "@/hooks/useECharts";
 
 const BarRaceChart = () => {
   const chartRef = useRef(null);
@@ -16,32 +17,36 @@ const BarRaceChart = () => {
     return getCategorySums(categories).sort((a, b) => b.sum - a.sum);
   }, [categories]);
 
-  const backgroundData = useMemo(() => {
-    const maxSum = Math.max(...categorySums.map((c) => c.sum)) || 1;
-    return categorySums.map(() => maxSum);
+  const maxSum = useMemo(() => {
+    return Math.max(...categorySums.map((c) => c.sum)) || 1;
   }, [categorySums]);
 
+  const backgroundData = useMemo(() => categorySums.map(() => maxSum), [categorySums, maxSum]);
+
   const barData = useMemo(() => {
-    return categorySums.map((cat) => ({
-      value: cat.sum,
-      itemStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-          { offset: 0, color: getColor(`--${cat.id}-gradient-1`) },
-          { offset: 1, color: getColor(`--${cat.id}-gradient-2`) },
-        ]),
-        borderRadius: 16,
-      },
-    }));
-  }, [categorySums, getColor]);
+    const MIN_PERCENT = 0.1;
+    return categorySums.map((cat) => {
+      const displayValue = cat.sum < maxSum * MIN_PERCENT ? maxSum * MIN_PERCENT : cat.sum;
+      return {
+        value: displayValue,
+        name: cat.name,
+        realValue: cat.sum,
+        itemStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+            { offset: 0, color: getColor(`--${cat.id}-gradient-1`) },
+            { offset: 1, color: getColor(`--${cat.id}-gradient-2`) },
+          ]),
+          borderRadius: 16,
+        },
+      };
+    });
+  }, [categorySums, getColor, maxSum]);
 
   const categoryNames = useMemo(() => categorySums.map((cat) => cat.name), [categorySums]);
 
-  useEffect(() => {
-    if (!chartRef.current) return;
-
-    const myChart = echarts.init(chartRef.current);
-
-    const option = {
+  useEChart(
+    chartRef,
+    () => ({
       xAxis: {
         max: "dataMax",
         show: false,
@@ -74,7 +79,7 @@ const BarRaceChart = () => {
           label: {
             show: true,
             position: "insideLeft",
-            formatter: (params) => `${params.name}: ${params.value}`,
+            formatter: (params) => `${params.name}: ${params.data.realValue}`,
             color: "#000",
             fontWeight: "bold",
             fontSize: 22,
@@ -97,18 +102,11 @@ const BarRaceChart = () => {
         right: 30,
       },
       animationDurationUpdate: 500,
-    };
+    }),
+    [barData, backgroundData, categoryNames]
+  );
 
-    myChart.setOption(option);
-    window.addEventListener("resize", myChart.resize);
-
-    return () => {
-      window.removeEventListener("resize", myChart.resize);
-      myChart.dispose();
-    };
-  }, [barData, backgroundData, categoryNames]);
-
-  return <div ref={chartRef} className={styles.chart} style={{ width: "100%", height: "800px" }}></div>;
+  return <div ref={chartRef} className={styles.chart} style={{ width: "100%", height: "800px" }} />;
 };
 
 export default BarRaceChart;

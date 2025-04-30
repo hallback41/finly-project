@@ -5,6 +5,8 @@
   --color-text: #fdfdfe;
   --color-text-overlay: #070707;
   --color-border: linear-gradient(135deg, #fbfefe, #f5d697);
+  --statistics-font-color: #faf8f8;
+  --statistics-amount-font--color: #ffd11a;
 
   // Шрифты
   --font-family-base: "Monocraft", sans-serif;
@@ -15,4 +17,5 @@
   --category-border-color: rgb(252, 251, 251);
   --category-border-radius: none;
   --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --statistics-btn-border-radius: #{rem(1)};
 }

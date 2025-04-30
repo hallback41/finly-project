@@ -5,6 +5,8 @@
   --color-text: #fcfafa;
   --color-text-overlay: black;
   --color-border: none;
+  --statistics-font-color: #0b0b0b;
+  --statistics-amount-font--color: black;
 
   // Радиусы и бордеры
   --categorie-border-radius: #{rem(32)};
@@ -13,6 +15,7 @@
   --category-border-color: transparent;
   --border-radius-theme: #{rem(16)};
   --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --statistics-btn-border-radius: #{rem(8)};
 
   // Шрифт
   --font-family-them: "SF-Pro-Display-Light", sans-serif;

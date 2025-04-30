@@ -1,35 +1,50 @@
 .item {
+  padding: rem(12) rem(16);
+  border-radius: rem(8);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
-  background-color: rgba(255, 255, 255, 0.05); // лёгкий фон для элемента
-  border-radius: 8px;
-  font-size: 16px;
+
+  background-color: var(--color-statistics-background);
+  backdrop-filter: blur(6px);
   color: var(--color-text, #fff);
-  backdrop-filter: blur(6px); // эффект лёгкого размытия за элементом
+  font-size: 22px;
+
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-statistics-background-hover);
+    scale: 1.01;
   }
-}
 
-.date {
-  flex: 1;
-  font-weight: 500;
-  color: var(--color-text-secondary, #aaa);
-}
+  &__date {
+    flex: 1;
 
-.category {
-  flex: 1;
-  text-align: center;
-  font-weight: 600;
-  text-transform: capitalize;
-}
+    font-weight: 700;
+    color: var(--statistics-font-color);
+  }
 
-.amount {
-  flex: 0;
-  font-weight: 700;
-  color: var(--color-accent, #00ffaa);
+  &__category {
+    flex: 1;
+    text-align: center;
+
+    font-weight: 600;
+    text-transform: capitalize;
+    color: var(--statistics-font-color);
+  }
+
+  &__amount {
+    flex: 0;
+    padding-inline: rem(20);
+
+    font-size: rem(28);
+    color: var(--statistics-amount-font--color);
+  }
+
+  &__deleteBtn {
+    padding: rem(10) rem(30);
+    border-radius: var(--statistics-btn-border-radius);
+    background-color: var(--color-red);
+  }
 }

@@ -1,26 +1,24 @@
 .list {
-  list-style: none; // убираем точки
+  list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px; // расстояние между элементами
+  gap: rem(8);
 
-  // Контроль высоты списка
-  max-height: calc(20 * 60px); // допустим, каждый .item примерно 60px высоты
-  overflow-y: auto; // скролл по вертикали
-  padding-right: 8px; // чуть место для скроллбара
+  max-height: calc(20 * rem(60));
+  overflow-y: auto;
 
-  scrollbar-width: thin; // для Firefox
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent; // цвет полосы прокрутки
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-statistics-background-hover) transparent;
 
   &::-webkit-scrollbar {
-    width: 6px;
+    width: rem(8);
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
+    background-color: var(--color-statistics-background-hover);
+    border-radius: rem(8);
   }
 
   &::-webkit-scrollbar-track {

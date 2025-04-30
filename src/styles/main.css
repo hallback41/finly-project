@@ -246,12 +246,15 @@ svg * {
   --color-text: #fdfdfe;
   --color-text-overlay: #070707;
   --color-border: linear-gradient(135deg, #fbfefe, #f5d697);
+  --statistics-font-color: #faf8f8;
+  --statistics-amount-font--color: #ffd11a;
   --font-family-base: "Monocraft", sans-serif;
   --categorie-border-style: solid;
   --category-border-height: 0.3125rem;
   --category-border-color: rgb(252, 251, 251);
   --category-border-radius: none;
   --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --statistics-btn-border-radius: 0.0625rem;
 }
 
 :root[data-theme=cyberpunk] {
@@ -259,11 +262,15 @@ svg * {
   --color-text: #fdfdfe;
   --color-text-overlay: #070707;
   --color-border: linear-gradient(135deg, #00ffff, #ff00ff);
+  --statistics-font-color: #faf8f8;
+  --statistics-font--color: #faf8f8;
+  --statistics-amount-font--color: #ffd11a;
   --categorie-border-radius: 5px;
   --categorie-border-style: solid;
   --category-border-height: 0.3125rem;
   --category-border-color: rgb(252, 251, 251);
   --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --statistics-btn-border-radius: 0.3125rem;
   --categorie-glitch-enabled: 1;
 }
 
@@ -359,11 +366,14 @@ svg * {
   --color-text: #fdfdfe;
   --color-text-overlay: #070707;
   --color-border: #ffd11a;
+  --statistics-font-color: #faf8f8;
+  --statistics-amount-font--color: #ffd11a;
   --categorie-border-radius: 5px;
   --categorie-border-style: solid;
   --category-border-height: 0.3125rem;
   --category-border-color: var(--color-border);
   --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --statistics-btn-border-radius: 0.3125rem;
   --font-family-them: "UncialAntiqua-Regular", sans-serif;
 }
 
@@ -371,12 +381,15 @@ svg * {
   --color-text: #fcfafa;
   --color-text-overlay: black;
   --color-border: none;
+  --statistics-font-color: #0b0b0b;
+  --statistics-amount-font--color: black;
   --categorie-border-radius: 2rem;
   --categorie-border-style: solid;
   --category-border-height: 0.3125rem;
   --category-border-color: transparent;
   --border-radius-theme: 1rem;
   --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --statistics-btn-border-radius: 0.5rem;
   --font-family-them: "SF-Pro-Display-Light", sans-serif;
 }
 
@@ -384,12 +397,15 @@ svg * {
   --color-text: #000000;
   --color-text-overlay: rgb(255, 255, 255);
   --color-border: none;
+  --statistics-font-color: #faf8f8;
+  --statistics-amount-font--color: #ffd11a;
   --categorie-border-radius: 2rem;
   --categorie-border-style: solid;
   --category-border-height: 0.3125rem;
   --category-border-color: transparent;
   --border-radius-theme: 1rem;
   --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --statistics-btn-border-radius: 0.5rem;
   --font-family-them: "SF-Pro-Display-Light", sans-serif;
 }
 
@@ -404,6 +420,8 @@ svg * {
   --color-gray-60: #98989a;
   --color-accent: #ffd11a;
   --color-red: #ff5500;
+  --color-statistics-background: rgba(255, 255, 255, 0.325);
+  --color-statistics-background-hover: rgba(255, 255, 255, 0.543);
   --font-family-base: "Monocraft", sans-serif;
   --font-family-accent: "OpenSans-Italic", sans-serif;
   --font-family-fantasy-them: "UncialAntiqua-Regular", sans-serif;

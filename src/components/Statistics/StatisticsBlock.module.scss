@@ -17,7 +17,7 @@
   .video-blur {
     position: absolute;
     inset: 0;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(rem(12));
     z-index: 1;
   }
 

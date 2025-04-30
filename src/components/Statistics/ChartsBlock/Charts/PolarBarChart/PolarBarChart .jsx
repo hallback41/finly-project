@@ -22,7 +22,7 @@ const PolarBarChart = () => {
   const categoryNames = useMemo(() => categorySums.map((cat) => cat.name), [categorySums]);
 
   const data = useMemo(() => {
-    const MIN_PERCENT = 0.055;
+    const MIN_PERCENT = 0.001;
     return categorySums.map((cat) => {
       const value = cat.sum < maxSum * MIN_PERCENT ? maxSum * MIN_PERCENT : cat.sum;
       return {
@@ -42,7 +42,6 @@ const PolarBarChart = () => {
     });
   }, [categorySums, getColor, maxSum]);
 
-  // ✅ вызываем useEChart правильно: (ref, getOptionFn, deps)
   useEChart(
     chartRef,
     () => ({
@@ -85,7 +84,7 @@ const PolarBarChart = () => {
           roundCap: true,
           barWidth: 150,
           label: {
-            show: true,
+            show: false,
             position: "insideStart",
             formatter: "{b}",
             color: "#000",
@@ -107,7 +106,26 @@ const PolarBarChart = () => {
     [categorySums, categoryNames, maxSum, data]
   );
 
-  return <div ref={chartRef} className={styles.chart} />;
+  return (
+    <div className={styles.container}>
+      <div className={styles.chartWrapper}>
+        <ul className={styles.legend}>
+          {categorySums.map((cat) => (
+            <li key={cat.id} className={styles.legendItem}>
+              <span
+                className={styles.legendColor}
+                style={{
+                  background: `linear-gradient(to right, var(--${cat.id}-gradient-1), var(--${cat.id}-gradient-2))`,
+                }}
+              />
+              <span className={styles.legendLabel}>{cat.name}</span>
+            </li>
+          ))}
+        </ul>
+        <div ref={chartRef} className={styles.chart} />
+      </div>
+    </div>
+  );
 };
 
 export default PolarBarChart;

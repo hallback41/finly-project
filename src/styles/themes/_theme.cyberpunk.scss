@@ -8,6 +8,9 @@
   --color-text: #fdfdfe;
   --color-text-overlay: #070707;
   --color-border: linear-gradient(135deg, #00ffff, #ff00ff);
+  --statistics-font-color: #faf8f8;
+  --statistics-font--color: #faf8f8;
+  --statistics-amount-font--color: #ffd11a;
 
   // Бордеры
   --categorie-border-radius: 5px;
@@ -15,6 +18,7 @@
   --category-border-height: #{rem(5)};
   --category-border-color: rgb(252, 251, 251);
   --border: var(--category-border-height) var(--categorie-border-style) var(--category-border-color);
+  --statistics-btn-border-radius: #{rem(5)};
 
   // Флаг глитча
   --categorie-glitch-enabled: 1;

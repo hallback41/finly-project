@@ -1,12 +1,60 @@
+.container {
+  width: 100%;
+  height: 100%;
+  padding: rem(0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartWrapper {
+  display: flex;
+  align-items: stretch;
+  min-width: 100%;
+  max-width: rem(1400);
+  height: 100%;
+  background-color: var(--color-statistics-background);
+  border-radius: var(--categorie-border-radius);
+}
+
 .chart {
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  padding-left: rem(60);
+  width: rem(150);
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.legendItem {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 800px;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.295);
-  border-radius: 32px;
+  gap: rem(15);
+  margin-bottom: rem(5);
+}
+
+.legendColor {
+  width: rem(16);
+  height: rem(16);
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-size: rem(24);
+  font-weight: 700;
+  color: var(--color-text-overlay);
+
+  @include laptop {
+    font-size: rem(16);
+  }
 }
