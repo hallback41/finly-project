@@ -18,13 +18,12 @@ const BarRaceChart = () => {
 
     const getColor = (varName) => getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
 
-    // Готовим данные по категориям
     const sortedCategories = [...categories]
       .map((cat) => ({
         ...cat,
         sum: cat.expenses.reduce((sum, exp) => sum + exp.amount, 0),
       }))
-      .sort((a, b) => b.sum - a.sum); // сортировка по убыванию сумм
+      .sort((a, b) => b.sum - a.sum);
 
     const option = {
       xAxis: {

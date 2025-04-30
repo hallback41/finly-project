@@ -22,7 +22,7 @@ const PolarBarChart = () => {
     const categorySums = categories.map((cat) => cat.expenses.reduce((sum, exp) => sum + exp.amount, 0));
 
     const maxSum = Math.max(...categorySums) || 1;
-    const MIN_PERCENT = 0.025; // Минимум 10% от максимального значения
+    const MIN_PERCENT = 0.055;
 
     const data = categories.map((category) => {
       const sum = category.expenses.reduce((acc, exp) => acc + exp.amount, 0);
@@ -30,15 +30,15 @@ const PolarBarChart = () => {
 
       return {
         value,
-        realValue: sum, // сохраним реальное значение для подписи если нужно
+        realValue: sum,
         name: category.name,
         itemStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 1, 1, [
             { offset: 0, color: getColor(`--${category.id}-gradient-1`) },
             { offset: 1, color: getColor(`--${category.id}-gradient-2`) },
           ]),
-          borderColor: "#000", // ✅ черная обводка
-          borderWidth: 2, // ✅ толщина обводки
+          borderColor: "rgba(24, 19, 19, 0.49)",
+          borderWidth: 3,
           borderType: "solid",
         },
       };
@@ -64,30 +64,44 @@ const PolarBarChart = () => {
         splitLine: { show: false },
       },
       tooltip: {},
-      series: {
-        type: "bar",
-        data: data,
-        coordinateSystem: "polar",
-        roundCap: true,
-        barWidth: 150,
-        label: {
-          show: true,
-          position: "insideStart", // В начале линии
-          formatter: "{b}", // Показываем только название категории
-          color: "#000", // Чёрный текст
-          fontWeight: "bold",
-          fontSize: 14,
-          textBorderColor: "#fff", // Белая обводка
-          textBorderWidth: 3,
-          rotate: 0, // Держим горизонтально
-          align: "left", // Выравнивание в начале полоски
-          verticalAlign: "middle",
-          distance: 8, // Отступ от начала полоски
+      series: [
+        {
+          type: "bar",
+          data: categories.map(() => maxSum),
+          coordinateSystem: "polar",
+          roundCap: true,
+          barWidth: 1,
+          itemStyle: {
+            color: "rgba(255, 255, 255, 0.43)",
+          },
+          z: 1,
+          silent: true,
         },
-        labelLayout: {
-          rotate: -8,
+        {
+          type: "bar",
+          data: data,
+          coordinateSystem: "polar",
+          roundCap: true,
+          barWidth: 150,
+          label: {
+            show: true,
+            position: "insideStart",
+            formatter: "{b}",
+            color: "#000",
+            fontWeight: "bold",
+            fontSize: 14,
+            textBorderColor: "#fff",
+            textBorderWidth: 3,
+            align: "left",
+            verticalAlign: "middle",
+            distance: 8,
+          },
+          labelLayout: {
+            rotate: -8,
+          },
+          z: 2,
         },
-      },
+      ],
     };
 
     myChart.setOption(option);
