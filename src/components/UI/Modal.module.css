@@ -1,0 +1,47 @@
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0.25rem);
+  -webkit-backdrop-filter: blur(0.25rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  font-family: var(--font-family-them);
+  background: var(--color-statistics-background-hover);
+  padding: 2.5rem;
+  border-radius: var(--statistics-btn-border-radius);
+  max-width: 31.25rem;
+  width: 100%;
+}/*# sourceMappingURL=Modal.module.css.map */

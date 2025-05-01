@@ -13,7 +13,7 @@
   --statistics-amount-font--color: #ffd11a;
 
   // Бордеры
-  --categorie-border-radius: 5px;
+  --categorie-border-radius: #{rem(5)};
   --categorie-border-style: solid;
   --category-border-height: #{rem(5)};
   --category-border-color: rgb(252, 251, 251);

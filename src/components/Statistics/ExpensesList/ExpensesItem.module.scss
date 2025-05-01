@@ -1,3 +1,5 @@
+@use "../../../styles/helpers/" as *;
+
 .item {
   padding: rem(12) rem(16);
   border-radius: rem(8);
@@ -9,13 +11,17 @@
   background-color: var(--color-statistics-background);
   backdrop-filter: blur(6px);
   color: var(--color-text, #fff);
-  font-size: 22px;
+  font-size: rem(24);
 
   transition: background-color 0.3s ease;
 
   &:hover {
     background-color: var(--color-statistics-background-hover);
     scale: 1.01;
+  }
+
+  @include mobile {
+    font-size: rem(16);
   }
 
   &__date {
@@ -40,11 +46,66 @@
 
     font-size: rem(28);
     color: var(--statistics-amount-font--color);
+
+    @include mobile {
+      font-size: rem(16);
+    }
   }
 
   &__deleteBtn {
     padding: rem(10) rem(30);
     border-radius: var(--statistics-btn-border-radius);
     background-color: var(--color-red);
+
+    @include mobile {
+      padding: rem(10) rem(20);
+    }
+  }
+
+  &__modalTitle {
+    font-size: rem(28);
+    font-weight: 800;
+    color: var(--color-red);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  &__modalBtns {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+  }
+
+  &__modalBtn {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    font-size: rem(26);
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  &__modalBtn--back {
+    background-color: var(--color-gray);
+    color: #151111;
+
+    &:hover {
+      background-color: var(--color-gray-50);
+    }
+  }
+
+  &__modalBtn--confirm {
+    background-color: var(--color-gray-50);
+    color: #151111;
+
+    @include mobile {
+      background-color: var(--color-red);
+    }
+
+    &:hover {
+      background-color: var(--color-red);
+    }
   }
 }
