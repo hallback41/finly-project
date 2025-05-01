@@ -1,19 +1,51 @@
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
 .item {
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.325);
+  background-color: var(--color-statistics-background);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
   color: var(--color-text, #fff);
-  font-size: 22px;
+  font-size: 1.5rem;
   transition: background-color 0.3s ease;
 }
 .item:hover {
-  background-color: rgba(255, 255, 255, 0.543);
+  background-color: var(--color-statistics-background-hover);
   scale: 1.01;
+}
+@media (width <= 47.99875rem) {
+  .item {
+    font-size: 1rem;
+  }
 }
 .item__date {
   flex: 1;
@@ -29,12 +61,63 @@
 }
 .item__amount {
   flex: 0;
-  padding-inline: 20px;
-  font-size: 28px;
+  padding-inline: 1.25rem;
+  font-size: 1.75rem;
   color: var(--statistics-amount-font--color);
 }
+@media (width <= 47.99875rem) {
+  .item__amount {
+    font-size: 1rem;
+  }
+}
 .item__deleteBtn {
-  padding: 10px 30px;
+  padding: 0.625rem 1.875rem;
   border-radius: var(--statistics-btn-border-radius);
+  background-color: var(--color-red);
+}
+@media (width <= 47.99875rem) {
+  .item__deleteBtn {
+    padding: 0.625rem 1.25rem;
+  }
+}
+.item__modalTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-red);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.item__modalBtns {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+.item__modalBtn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.625rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+.item__modalBtn--back {
+  background-color: var(--color-gray);
+  color: #151111;
+}
+.item__modalBtn--back:hover {
+  background-color: var(--color-gray-50);
+}
+.item__modalBtn--confirm {
+  background-color: var(--color-gray-50);
+  color: #151111;
+}
+@media (width <= 47.99875rem) {
+  .item__modalBtn--confirm {
+    background-color: var(--color-red);
+  }
+}
+.item__modalBtn--confirm:hover {
   background-color: var(--color-red);
 }/*# sourceMappingURL=ExpensesItem.module.css.map */
