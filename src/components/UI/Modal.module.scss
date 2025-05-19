@@ -1,0 +1,22 @@
+@use "../../styles/helpers/" as *;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(rem(4));
+  -webkit-backdrop-filter: blur(rem(4));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  font-family: var(--font-family-them);
+  background: var(--color-statistics-background-hover);
+  padding: rem(40);
+  border-radius: var(--statistics-btn-border-radius);
+  max-width: rem(500);
+  width: 100%;
+}

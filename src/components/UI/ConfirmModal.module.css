@@ -1,0 +1,72 @@
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
+.modalTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-red);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.modalBtns {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.modalBtn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.625rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.modalBtnBack {
+  background-color: var(--color-gray);
+  color: #151111;
+}
+.modalBtnBack:hover {
+  background-color: var(--color-gray-50);
+}
+
+.modalBtnConfirm {
+  background-color: var(--color-gray-50);
+  color: #151111;
+}
+@media (width <= 47.99875rem) {
+  .modalBtnConfirm {
+    background-color: var(--color-red);
+  }
+}
+.modalBtnConfirm:hover {
+  background-color: var(--color-red);
+}/*# sourceMappingURL=ConfirmModal.module.css.map */
