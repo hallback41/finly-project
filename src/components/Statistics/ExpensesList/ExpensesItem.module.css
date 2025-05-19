@@ -36,6 +36,7 @@
           backdrop-filter: blur(6px);
   color: var(--color-text, #fff);
   font-size: 1.5rem;
+  font-family: var(--font-family-them);
   transition: background-color 0.3s ease;
 }
 .item:hover {

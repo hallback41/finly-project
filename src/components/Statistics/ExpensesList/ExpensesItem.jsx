@@ -3,7 +3,6 @@ import React from "react";
 import { formatDate } from "../../../utils/formatDate";
 import { useDatabase } from "../../../context/DataBaseContext";
 import { useCallback, useState } from "react";
-import Modal from "../../UI/Modal";
 import ConfirmModal from "../../UI/ConfirmModal";
 
 const ExpensesItem = ({ id, categoryId, amount, date, category }) => {
