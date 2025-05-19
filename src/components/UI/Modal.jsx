@@ -1,14 +1,16 @@
 import styles from "./Modal.module.scss";
 import ReactDOM from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const Modal = ({ open, onClose, children }) => {
+  const modalRef = useRef(null);
+
   useEffect(() => {
-    const handleEsc = (e) => e.key === "Escape" && onClose();
-    if (open) window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, [open, onClose]);
+    if (open && modalRef.current) {
+      modalRef.current.focus();
+    }
+  }, [open]);
 
   if (!open) return null;
 
@@ -22,8 +24,13 @@ const Modal = ({ open, onClose, children }) => {
         exit={{ opacity: 0 }}
       >
         <motion.div
+          ref={modalRef}
           className={styles.modal}
+          tabIndex={-1}
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === "Escape") onClose();
+          }}
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}

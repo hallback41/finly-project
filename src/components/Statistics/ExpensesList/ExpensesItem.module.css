@@ -79,45 +79,4 @@
   .item__deleteBtn {
     padding: 0.625rem 1.25rem;
   }
-}
-.item__modalTitle {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--color-red);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.item__modalBtns {
-  display: flex;
-  justify-content: space-around;
-  gap: 1rem;
-}
-.item__modalBtn {
-  flex: 1;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.625rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-.item__modalBtn--back {
-  background-color: var(--color-gray);
-  color: #151111;
-}
-.item__modalBtn--back:hover {
-  background-color: var(--color-gray-50);
-}
-.item__modalBtn--confirm {
-  background-color: var(--color-gray-50);
-  color: #151111;
-}
-@media (width <= 47.99875rem) {
-  .item__modalBtn--confirm {
-    background-color: var(--color-red);
-  }
-}
-.item__modalBtn--confirm:hover {
-  background-color: var(--color-red);
 }/*# sourceMappingURL=ExpensesItem.module.css.map */

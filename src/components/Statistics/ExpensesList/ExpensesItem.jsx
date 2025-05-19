@@ -2,27 +2,24 @@ import styles from "./ExpensesItem.module.scss";
 import React from "react";
 import { formatDate } from "../../../utils/formatDate";
 import { useDatabase } from "../../../context/DataBaseContext";
-import { useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import Modal from "../../UI/Modal";
+import ConfirmModal from "../../UI/ConfirmModal";
 
 const ExpensesItem = ({ id, categoryId, amount, date, category }) => {
   const { removeExpenseFromCategory } = useDatabase();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleConfirm = () => {
+  const handleConfirm = useCallback(() => {
     removeExpenseFromCategory(categoryId, id);
     setIsOpen(false);
-  };
+  }, [id, categoryId, removeExpenseFromCategory]);
 
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (isOpen && e.key === "Enter") {
-        handleConfirm();
-      }
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [isOpen]);
+  const handleKeyDown = (e) => {
+    if (isOpen && e.key === "Enter") {
+      handleConfirm();
+    }
+  };
 
   return (
     <>
@@ -35,23 +32,16 @@ const ExpensesItem = ({ id, categoryId, amount, date, category }) => {
         </button>
       </li>
 
-      <Modal className={styles["item__modal"]} open={isOpen} onClose={() => setIsOpen(false)}>
-        <h2 className={styles["item__modalTitle"]}>Delete expense?</h2>
-        <div className={styles["item__modalBtns"]}>
-          <button
-            className={`${styles["item__modalBtn"]} ${styles["item__modalBtn--back"]}`}
-            onClick={() => setIsOpen(false)}
-          >
-            Back
-          </button>
-          <button
-            className={`${styles["item__modalBtn"]} ${styles["item__modalBtn--confirm"]}`}
-            onClick={handleConfirm}
-          >
-            Confirm
-          </button>
-        </div>
-      </Modal>
+      <ConfirmModal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        onConfirm={handleConfirm}
+        title="Delete expense?"
+        confirmText="Confirm"
+        cancelText="Back"
+        className={styles["item__modal"]}
+        onKeyDown={handleKeyDown}
+      />
     </>
   );
 };
