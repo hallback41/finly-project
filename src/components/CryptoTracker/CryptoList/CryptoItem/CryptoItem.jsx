@@ -2,7 +2,7 @@ import styles from "./CryptoItem.module.scss";
 import React, { useState } from "react";
 import CryptoChart from "./CryptoChart";
 
-const CryptoItem = ({ coin }) => {
+const CryptoItem = ({ coin, onDelete }) => {
   const [open, setOpen] = useState(true);
 
   return (
@@ -24,6 +24,9 @@ const CryptoItem = ({ coin }) => {
         </span>
         <button className={styles["crypto-item__price-btn"]} onClick={() => setOpen((prev) => !prev)}>
           {coin.price.toLocaleString()} $
+        </button>
+        <button className={styles["crypto-item__delete-btn"]} onClick={() => onDelete(coin.id)}>
+          -
         </button>
       </div>
       {open && (

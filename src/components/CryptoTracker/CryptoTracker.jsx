@@ -4,9 +4,10 @@ import CryptoList from "./CryptoList/CryptoList";
 import React, { useState } from "react";
 import ThemeVideoBackground from "../CategoriesBlock/ThemeVideoBackground";
 import { useTheme } from "@/context/ThemeContext";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const CryptoTracker = () => {
-  const [selectedCoins, setSelectedCoins] = useState([]);
+  const [selectedCoins, setSelectedCoins] = useLocalStorage("selectedCoins", []);
   const { currentTheme } = useTheme();
 
   const handleAddCoin = (coin) => {
@@ -15,12 +16,16 @@ const CryptoTracker = () => {
     }
   };
 
+  const handleDeleteCoin = (coinId) => {
+    setSelectedCoins((prev) => prev.filter((coin) => coin.id !== coinId));
+  };
+
   return (
     <div className={`${styles.crypto} container`}>
       <ThemeVideoBackground theme={currentTheme} />
 
       <CryptoSelector onSelect={handleAddCoin} />
-      <CryptoList coins={selectedCoins} />
+      <CryptoList coins={selectedCoins} onDelete={handleDeleteCoin} />
     </div>
   );
 };
