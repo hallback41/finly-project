@@ -422,6 +422,7 @@ svg * {
   --color-red: #ff5500;
   --color-statistics-background: rgba(255, 255, 255, 0.325);
   --color-statistics-background-hover: rgba(255, 255, 255, 0.543);
+  --color-crypto-background: rgba(255, 255, 255, 0.325);
   --font-family-base: "Monocraft", sans-serif;
   --font-family-accent: "OpenSans-Italic", sans-serif;
   --font-family-fantasy-them: "UncialAntiqua-Regular", sans-serif;
