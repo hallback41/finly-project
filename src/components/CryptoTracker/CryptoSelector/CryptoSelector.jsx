@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { usePaprikaCoins } from "../../../hooks/usePaprikaCoins";
 import styles from "./CryptoSelector.module.scss";
+import ImageWithFallback from "../../UI/ImageWithFallback";
 
 const CryptoSelector = ({ onSelect }) => {
   const { coins, loading } = usePaprikaCoins();
@@ -39,17 +40,13 @@ const CryptoSelector = ({ onSelect }) => {
                 }}
                 className={styles["crypto-selector__item"]}
               >
-                <img
+                <ImageWithFallback
                   src={coin.icon}
+                  symbol={coin.symbol}
                   alt={coin.symbol}
                   width={32}
                   height={32}
                   className={styles["crypto-selector__img"]}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src =
-                      "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg";
-                  }}
                 />
                 {coin.name} ({coin.symbol}) — {coin.price.toLocaleString()}$
               </li>

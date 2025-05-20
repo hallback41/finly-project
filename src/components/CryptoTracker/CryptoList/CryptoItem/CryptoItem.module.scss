@@ -54,6 +54,7 @@
   &__delete-btn {
     background: var(--color-red);
     color: var(--color-dark);
+    margin-left: rem(10);
     border: none;
     border-radius: var(--categorie-border-radius);
     padding: rem(12) rem(30);

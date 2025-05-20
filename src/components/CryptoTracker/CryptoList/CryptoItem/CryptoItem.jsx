@@ -1,23 +1,21 @@
 import styles from "./CryptoItem.module.scss";
 import React, { useState } from "react";
 import CryptoChart from "./CryptoChart";
+import ImageWithFallback from "../../../UI/ImageWithFallback";
 
-const CryptoItem = ({ coin, onDelete }) => {
+const CryptoItem = React.memo(({ coin, onDelete }) => {
   const [open, setOpen] = useState(true);
 
   return (
     <div className={styles["crypto-item"]}>
       <div className={styles["crypto-item__body"]}>
-        <img
-          className={styles["crypto-item__icon"]}
+        <ImageWithFallback
           src={coin.icon}
+          symbol={coin.symbol}
           alt={coin.symbol}
           width={32}
           height={32}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = `https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/128/color/btc.png`;
-          }}
+          className={styles["crypto-item__icon"]}
         />
         <span className={styles["crypto-item__info"]}>
           {coin.name} ({coin.symbol.toUpperCase()})
@@ -36,6 +34,6 @@ const CryptoItem = ({ coin, onDelete }) => {
       )}
     </div>
   );
-};
+});
 
 export default CryptoItem;

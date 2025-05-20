@@ -3,6 +3,8 @@
 .crypto-list-tracked {
   display: grid;
   grid-template-columns: repeat(2, 1fr); // 2 колонки как и в селекторе
+  align-items: start; // <-- ДОБАВЬ ЭТО
+
   gap: rem(18);
   width: 100%;
   padding: rem(12) 0;

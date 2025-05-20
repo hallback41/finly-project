@@ -1,7 +1,7 @@
 import styles from "./CryptoTracker.module.scss";
 import CryptoSelector from "./CryptoSelector/CryptoSelector";
 import CryptoList from "./CryptoList/CryptoList";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import ThemeVideoBackground from "../CategoriesBlock/ThemeVideoBackground";
 import { useTheme } from "@/context/ThemeContext";
 import useLocalStorage from "../../hooks/useLocalStorage";
@@ -10,15 +10,24 @@ const CryptoTracker = () => {
   const [selectedCoins, setSelectedCoins] = useLocalStorage("selectedCoins", []);
   const { currentTheme } = useTheme();
 
-  const handleAddCoin = (coin) => {
-    if (!selectedCoins.some((c) => c.id === coin.id)) {
-      setSelectedCoins((prev) => [...prev, coin]);
-    }
-  };
+  const handleAddCoin = useCallback(
+    (coin) => {
+      setSelectedCoins((prev) => {
+        if (!prev.some((c) => c.id === coin.id)) {
+          return [...prev, coin];
+        }
+        return prev;
+      });
+    },
+    [setSelectedCoins]
+  );
 
-  const handleDeleteCoin = (coinId) => {
-    setSelectedCoins((prev) => prev.filter((coin) => coin.id !== coinId));
-  };
+  const handleDeleteCoin = useCallback(
+    (coinId) => {
+      setSelectedCoins((prev) => prev.filter((coin) => coin.id !== coinId));
+    },
+    [setSelectedCoins]
+  );
 
   return (
     <div className={`${styles.crypto} container`}>
