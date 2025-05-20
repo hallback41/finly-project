@@ -420,6 +420,7 @@ svg * {
   --color-gray-60: #98989a;
   --color-accent: #ffd11a;
   --color-red: #ff5500;
+  --color-green: #00e676;
   --color-statistics-background: rgba(255, 255, 255, 0.325);
   --color-statistics-background-hover: rgba(255, 255, 255, 0.543);
   --color-crypto-background: rgba(255, 255, 255, 0.325);
@@ -429,6 +430,7 @@ svg * {
   --container-width: 100rem;
   --container-padding-x: 1rem;
   --transition-duration: 0.2s;
+  --box-shadow: 0 1px 3px #1113;
   --category-height-desktop: 12.5rem;
   --category-height-laptop: 10.625rem;
   --category-height-mobile: 9.375rem;

@@ -14,51 +14,49 @@ const CryptoSelector = ({ onSelect }) => {
 
   return (
     <div className={`${styles["crypto-selector"]} container`}>
-      <button className={`${styles["crypto-selector__add-btn"]}`} onClick={() => setIsOpen((open) => !open)}>
+      <button className={styles["crypto-selector__add-btn"]} onClick={() => setIsOpen((open) => !open)}>
         {isOpen ? "Close" : "Add coin"}
       </button>
-      {isOpen && (
-        <div className={`${styles["crypto-selector__dropdown"]}`}>
-          <input
-            className={`${styles["crypto-selector__search"]}`}
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          {loading ? (
-            <div>Загрузка...</div>
-          ) : (
-            <ul className={`${styles["crypto-selector__list"]}`}>
-              {filteredCoins.map((coin) => (
-                <li
-                  key={coin.id}
-                  onClick={() => {
-                    onSelect(coin);
-                    setIsOpen(false);
-                    setSearch("");
+      <div className={`${styles["crypto-selector__dropdown"]} ${isOpen ? styles.open : ""}`}>
+        <input
+          className={styles["crypto-selector__search"]}
+          type="text"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        {loading ? (
+          <div>Загрузка...</div>
+        ) : (
+          <ul className={styles["crypto-selector__list"]}>
+            {filteredCoins.map((coin) => (
+              <li
+                key={coin.id}
+                onClick={() => {
+                  onSelect(coin);
+                  setIsOpen(false);
+                  setSearch("");
+                }}
+                className={styles["crypto-selector__item"]}
+              >
+                <img
+                  src={coin.icon}
+                  alt={coin.symbol}
+                  width={32}
+                  height={32}
+                  className={styles["crypto-selector__img"]}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src =
+                      "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg";
                   }}
-                  className={`${styles["crypto-selector__item"]}`}
-                >
-                  <img
-                    src={coin.icon}
-                    alt={coin.symbol}
-                    width={32}
-                    height={32}
-                    className={`${styles["crypto-selector__img"]}`}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src =
-                        "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg";
-                    }}
-                  />
-                  {coin.name} ({coin.symbol}) — {coin.price.toLocaleString()}$
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
+                />
+                {coin.name} ({coin.symbol}) — {coin.price.toLocaleString()}$
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

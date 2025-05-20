@@ -12,6 +12,7 @@
   --color-gray-60: #98989a;
   --color-accent: #ffd11a;
   --color-red: #ff5500;
+  --color-green: #00e676;
   --color-statistics-background: rgba(255, 255, 255, 0.325);
   --color-statistics-background-hover: rgba(255, 255, 255, 0.543);
   --color-crypto-background: rgba(255, 255, 255, 0.325);
@@ -24,6 +25,8 @@
   --container-padding-x: #{rem(16)};
 
   --transition-duration: 0.2s;
+
+  --box-shadow: 0 1px 3px #1113;
 
   //Category setting
   --category-height-desktop: #{rem(200)};

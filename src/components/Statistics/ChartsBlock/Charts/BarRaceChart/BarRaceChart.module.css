@@ -1,9 +1,44 @@
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
 .chart {
   width: 100%;
-  min-height: 800px;
-  padding: 0;
-  margin: 0;
+  min-height: 50rem;
   position: relative;
-  background-color: rgba(255, 255, 255, 0.295);
-  border-radius: 32px;
+  background-color: var(--color-statistics-background);
+  border-radius: var(--categorie-border-radius);
+}
+@media (width <= 90.06125rem) {
+  .chart {
+    min-height: 37.5rem;
+  }
+}
+@media (width <= 47.99875rem) {
+  .chart {
+    min-height: 25rem;
+  }
 }/*# sourceMappingURL=BarRaceChart.module.css.map */

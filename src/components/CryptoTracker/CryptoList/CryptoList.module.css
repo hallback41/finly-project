@@ -1,1 +1,44 @@
-/*# sourceMappingURL=CryptoList.module.css.map */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
+.crypto-list-tracked {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.125rem;
+  width: 100%;
+  padding: 0.75rem 0;
+  border-radius: var(--categorie-border-radius);
+  box-shadow: var(--box-shadow);
+  margin: 1.125rem 0;
+  z-index: 1;
+}
+@media (width <= 47.99875rem) {
+  .crypto-list-tracked {
+    grid-template-columns: 1fr;
+    gap: 0.625rem;
+  }
+}/*# sourceMappingURL=CryptoList.module.css.map */

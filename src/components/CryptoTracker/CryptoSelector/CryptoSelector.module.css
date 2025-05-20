@@ -41,13 +41,14 @@
   min-width: 100%;
   padding: 1.25rem;
   border-radius: var(--categorie-border-radius);
-  background: rgba(251, 251, 251, 0.5803921569);
+  background: var(--color-crypto-background);
   border: var(--border);
   border-radius: var(--categorie-border-radius);
   font-size: 28px;
   cursor: pointer;
   transition: background 0.18s;
   text-transform: uppercase;
+  box-shadow: var(--box-shadow);
   z-index: 1;
 }
 .crypto-selector__add-btn:hover {
@@ -55,12 +56,19 @@
   color: var(--color-light);
 }
 .crypto-selector__dropdown {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
+  max-height: 0;
+  min-width: 100%;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-24px);
+  transition: max-height var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--transition-duration), transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+.crypto-selector__dropdown.open {
+  max-height: 56.25rem;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
 }
 .crypto-selector__search {
   text-align: center;
@@ -68,27 +76,26 @@
   padding: 0.625rem;
   border-radius: var(--categorie-border-radius);
   border: var(--border);
-  background: #23242c;
-  color: #fff;
-  font-size: 26px;
+  background: var(--color-crypto-background);
+  color: var(--statistics-font-color);
   outline: none;
   transition: border 0.15s;
 }
 .crypto-selector__search:focus {
-  border-color: #00e676;
+  border-color: var(--color-accent);
 }
 .crypto-selector__list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin: 16px 0 0 0;
+  margin: 1rem 0 0 0;
   padding: 0;
   list-style: none;
-  max-height: 370px;
+  max-height: 23.125rem;
   overflow-y: auto;
   width: 100%;
-  background: #22232b;
+  background: var(--color-crypto-background);
   border-radius: var(--categorie-border-radius);
-  box-shadow: 0 2px 18px rgba(25, 26, 32, 0.3333333333);
+  box-shadow: var(--box-shadow);
 }
 @media (width <= 47.99875rem) {
   .crypto-selector__list {
@@ -98,32 +105,43 @@
 .crypto-selector__item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
+  gap: 0.75rem;
+  padding: 0.75rem 1.125rem;
   cursor: pointer;
-  font-size: 17px;
-  color: #fff;
-  border-bottom: 1px solid #313142;
-  transition: background 0.18s;
+  font-size: 1.0625rem;
+  color: var(--statistics-font-color);
+  border-bottom: 0.125rem solid var(--color-gray-60);
+  border-left: none;
+  transition: background var(--transition-duration);
+}
+.crypto-selector__item:hover {
+  background: var(--color-dark-40);
+  color: var(--color-green);
+}
+@media (width > 47.99875rem) {
+  .crypto-selector__item:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+.crypto-selector__item:nth-child(2n) {
+  border-left: 0.125rem solid var(--color-gray-60);
+}
+@media (width <= 47.99875rem) {
+  .crypto-selector__item:nth-child(2n) {
+    border-left: none;
+  }
 }
 @media (width <= 47.99875rem) {
   .crypto-selector__item {
     justify-content: center;
   }
 }
-.crypto-selector__item:hover {
-  background: #232633;
-  color: #00e676;
-}
-.crypto-selector__item:last-child {
-  border-bottom: none;
-}
 .crypto-selector__img {
-  width: 32px;
-  height: 32px;
+  width: 2.625rem;
+  height: 2.625rem;
   border-radius: 50%;
   background: #fff;
   -o-object-fit: contain;
      object-fit: contain;
-  box-shadow: 0 1px 3px rgba(17, 17, 17, 0.2);
+  box-shadow: var(--box-shadow);
 }/*# sourceMappingURL=CryptoSelector.module.css.map */
