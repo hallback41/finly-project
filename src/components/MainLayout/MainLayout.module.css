@@ -1,0 +1,7 @@
+.slide-scrollable {
+  max-height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}/*# sourceMappingURL=MainLayout.module.css.map */

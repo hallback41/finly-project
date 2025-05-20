@@ -13,7 +13,9 @@ const CryptoChart = ({ coinId }) => {
     startDateObj.setDate(endDateObj.getDate() - 7);
     const start = startDateObj.toISOString().split("T")[0];
 
-    fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}/historical?start=${start}&end=${end}&interval=1d`)
+    fetch(
+      `https://thingproxy.freeboard.io/fetch/https://api.coinpaprika.com/v1/tickers/${coinId}/historical?start=${start}&end=${end}&interval=1d`
+    )
       .then((res) => {
         if (!res.ok) throw new Error("Not found");
         return res.json();

@@ -5,7 +5,7 @@ export const usePaprikaCoins = (limit = 50) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://api.coinpaprika.com/v1/tickers")
+    fetch("https://thingproxy.freeboard.io/fetch/https://api.coinpaprika.com/v1/tickers")
       .then((res) => res.json())
       .then((data) => {
         setCoins(
