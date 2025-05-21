@@ -5,21 +5,32 @@ import { useDatabase } from "@/context/DataBaseContext";
 import { getCategorySums } from "@/utils/getCategorySums";
 import useEChart from "@/hooks/useECharts";
 
-const PolarBarChart = () => {
+const PolarBarChart = ({ expenses }) => {
   const chartRef = useRef(null);
-  const { categories } = useDatabase();
+  const { categories } = useDatabase(); // Всё равно нужны названия, цвета и id категорий
 
-  const getColor = useCallback((varName) => {
-    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
-  }, []);
-
-  const categorySums = useMemo(() => getCategorySums(categories), [categories]);
+  // Считаем суммы только по expenses, а не по всем категориям!
+  const categorySums = useMemo(() => {
+    // Сгруппировать расходы по категориям
+    return categories.map((cat) => {
+      const catExpenses = expenses.filter((exp) => exp.categoryId === cat.id);
+      return {
+        id: cat.id,
+        name: cat.name,
+        sum: catExpenses.reduce((acc, exp) => acc + exp.amount, 0),
+      };
+    });
+  }, [expenses, categories]);
 
   const maxSum = useMemo(() => {
     return Math.max(...categorySums.map((cat) => cat.sum)) || 1;
   }, [categorySums]);
 
   const categoryNames = useMemo(() => categorySums.map((cat) => cat.name), [categorySums]);
+
+  const getColor = useCallback((varName) => {
+    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  }, []);
 
   const data = useMemo(() => {
     const MIN_PERCENT = 0.001;

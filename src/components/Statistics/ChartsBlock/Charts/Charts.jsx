@@ -2,14 +2,14 @@ import styles from "./Charts.module.scss";
 import PolarBarChart from "./PolarBarChart/PolarBarChart ";
 import BarRaceChart from "./BarRaceChart/BarRaceChart";
 
-const Charts = () => {
+const Charts = ({ expenses }) => {
   return (
     <ul className={styles["charts-list"]}>
       <li className={`${styles["charts-list__item"]} ${styles["charts-list__item--polar"]}`}>
-        <PolarBarChart />
+        <PolarBarChart expenses={expenses} />
       </li>
       <li className={`${styles["charts-list__item"]} ${styles["charts-list__item--bar"]}`}>
-        <BarRaceChart />
+        <BarRaceChart expenses={expenses} />
       </li>
     </ul>
   );

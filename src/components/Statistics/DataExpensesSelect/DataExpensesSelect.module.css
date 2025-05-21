@@ -31,11 +31,10 @@
   align-items: center;
   padding: 1.5rem 1rem;
   border-radius: 1.75rem;
-  background: rgba(170, 170, 190, 0.15);
+  background: var(--color-statistics-background);
   box-shadow: 0 2px 24px rgba(0, 0, 0, 0.1333333333);
-  width: 100%;
-  margin: 0 auto;
-  max-width: 850px;
+  margin: 1.25rem auto;
+  min-width: 100%;
 }
 .expenses-select__title {
   color: #fff;

@@ -1,26 +1,13 @@
 import styles from "./ExpensesList.module.scss";
 import React, { useMemo } from "react";
-import { useDatabase } from "../../../context/DataBaseContext";
 import ExpensesItem from "./ExpensesItem";
 
-const ExpensesList = () => {
-  const { categories } = useDatabase();
-
-  const allExpenses = useMemo(() => {
-    return categories
-      .flatMap((cat) =>
-        cat.expenses.map((exp) => ({
-          ...exp,
-          categoryId: cat.id,
-          categoryName: cat.name,
-        }))
-      )
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-  }, [categories]);
+const ExpensesList = ({ expenses }) => {
+  const sortedExpenses = useMemo(() => [...expenses].sort((a, b) => new Date(b.date) - new Date(a.date)), [expenses]);
 
   return (
     <ul className={`${styles.list} container`}>
-      {allExpenses.map((expense) => (
+      {sortedExpenses.map((expense) => (
         <ExpensesItem
           key={expense.id}
           id={expense.id}

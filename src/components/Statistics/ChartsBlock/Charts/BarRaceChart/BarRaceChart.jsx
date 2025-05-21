@@ -2,10 +2,9 @@ import React, { useRef, useMemo, useCallback } from "react";
 import * as echarts from "echarts";
 import styles from "./BarRaceChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
-import { getCategorySums } from "@/utils/getCategorySums";
 import useEChart from "@/hooks/useECharts";
 
-const BarRaceChart = () => {
+const BarRaceChart = ({ expenses }) => {
   const chartRef = useRef(null);
   const { categories } = useDatabase();
 
@@ -14,8 +13,15 @@ const BarRaceChart = () => {
   }, []);
 
   const categorySums = useMemo(() => {
-    return getCategorySums(categories).sort((a, b) => b.sum - a.sum);
-  }, [categories]);
+    return categories.map((cat) => {
+      const catExpenses = expenses.filter((exp) => exp.categoryId === cat.id);
+      return {
+        id: cat.id,
+        name: cat.name,
+        sum: catExpenses.reduce((acc, exp) => acc + exp.amount, 0),
+      };
+    });
+  }, [categories, expenses]);
 
   const maxSum = useMemo(() => {
     return Math.max(...categorySums.map((c) => c.sum)) || 1;
