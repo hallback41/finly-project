@@ -1,3 +1,37 @@
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
+.crypto {
+  position: relative;
+  overflow: hidden;
+  padding-block: 1.25rem;
+  transition: filter 0.3s ease;
+  min-height: 100vh;
+}
 .crypto__bg-video {
   position: absolute;
   inset: 0;
@@ -7,7 +41,7 @@
      object-fit: cover;
   opacity: 1;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1000;
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;

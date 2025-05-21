@@ -1,60 +1,108 @@
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
 .crypto-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 1rem;
   background: var(--color-crypto-background);
   border-radius: var(--categorie-border-radius);
   box-shadow: var(--box-shadow);
-  padding: 18px 22px;
+  padding: 1.25rem;
   color: var(--statistics-font-color);
-  border: 2px solid transparent;
-  transition: box-shadow 0.15s, border-color 0.15s, background 0.2s;
+  border: var(--border);
+  transition: var(--transition-duration);
   z-index: 1;
+  font-size: clamp(0.625rem, 0.4338235294rem + 0.7843137255vw, 1.375rem);
 }
 .crypto-item__body {
+  min-width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .crypto-item__icon {
-  width: 38px;
-  height: 38px;
+  width: 2.375rem;
+  height: 2.375rem;
   border-radius: 50%;
   background: #fff;
   -o-object-fit: contain;
      object-fit: contain;
-  box-shadow: 0 1px 4px rgba(17, 17, 17, 0.2);
-  margin-right: 12px;
+  box-shadow: var(--box-shadow);
+  margin-right: 0.75rem;
   z-index: 1;
 }
 .crypto-item__info {
   flex: 1 1 auto;
-  font-weight: 600;
-  font-size: 18px;
   color: var(--statistics-font-color);
   z-index: 1;
 }
 .crypto-item__price-btn {
-  background: #2a2c34;
-  color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-dark);
   border: none;
-  border-radius: 8px;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 12px 20px;
+  border-radius: var(--categorie-border-radius);
+  padding: 0.75rem 1.25rem;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
-  box-shadow: 0 1px 4px rgba(25, 26, 32, 0.1254901961);
+  white-space: nowrap;
+  transition: var(--transition-duration);
+  box-shadow: var(--box-shadow);
   z-index: 1;
 }
-.crypto-item__price-btn:hover {
-  background: #222531;
-  color: #00e676;
+.crypto-item__delete-btn {
+  background: var(--color-red);
+  color: var(--color-dark);
+  margin-left: 0.625rem;
+  border: none;
+  border-radius: var(--categorie-border-radius);
+  padding: 0.75rem 1.875rem;
+  cursor: pointer;
+  transition: var(--transition-duration);
+  box-shadow: var(--box-shadow);
+  z-index: 1;
+}
+@media (width <= 63.99875rem) {
+  .crypto-item__delete-btn {
+    padding: 0.75rem 1.25rem;
+  }
 }
 .crypto-item__chart-block {
-  grid-column: 1/-1;
-  padding-top: 10px;
-  width: 100%;
-  z-index: 1;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-18px);
+  transition: max-height var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--transition-duration), transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+.crypto-item__chart-block.open {
+  max-height: 1000px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
 }/*# sourceMappingURL=CryptoItem.module.css.map */

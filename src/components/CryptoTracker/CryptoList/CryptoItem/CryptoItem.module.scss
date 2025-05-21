@@ -1,3 +1,5 @@
+@use "../../../../styles/helpers/" as *;
+
 .crypto-item {
   display: flex;
   flex-direction: column;
@@ -69,9 +71,19 @@
   }
 
   &__chart-block {
-    grid-column: 1 / -1;
-    padding-top: rem(10);
-    width: 100%;
-    z-index: 1;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateY(-18px);
+    transition: max-height var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--transition-duration),
+      transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.open {
+      max-height: 1000px;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
   }
 }

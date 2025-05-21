@@ -1,9 +1,11 @@
+@use "../../styles/helpers/" as *;
+
 .crypto {
   position: relative;
   overflow: hidden;
   padding-block: rem(20);
   transition: filter 0.3s ease;
-  min-height: 100%;
+  min-height: 100vh;
 
   &__bg-video {
     position: absolute;
