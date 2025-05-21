@@ -10,15 +10,18 @@ const ThemeSelector = () => {
 
   return (
     <div className={styles.selector}>
-      {themes.map((theme) => (
-        <button
-          key={theme}
-          className={`${styles.button} ${currentTheme === theme ? styles.active : ""}`}
-          onClick={() => setCurrentTheme(theme)}
-        >
-          {theme}
-        </button>
-      ))}
+      <h2 className={styles["selector__title"]}>Theme:</h2>
+      <div className={styles["selector__body"]}>
+        {themes.map((theme) => (
+          <button
+            key={theme}
+            className={`${styles["selector__button"]} ${currentTheme === theme ? styles.active : ""}`}
+            onClick={() => setCurrentTheme(theme)}
+          >
+            {theme}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

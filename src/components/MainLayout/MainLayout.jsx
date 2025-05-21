@@ -6,10 +6,11 @@ import CryptoTracker from "../CryptoTracker/CryptoTracker";
 import CategoriesBlock from "../CategoriesBlock/CategoriesBlock";
 import StatisticsBlock from "../Statistics/StatisticsBlock";
 import categoriesData from "../categoriesData/categoriesData";
+import Settings from "../Settings/Settings";
 import styles from "./MainLayout.module.scss";
 
 const MainSwiper = () => (
-  <Swiper spaceBetween={32} slidesPerView={1} initialSlide={1} style={{ height: "100vh" }}>
+  <Swiper spaceBetween={32} slidesPerView={1} initialSlide={3} style={{ height: "100vh" }}>
     <SwiperSlide>
       <div className={styles.slideScrollable}>
         <CryptoTracker />
@@ -23,6 +24,11 @@ const MainSwiper = () => (
     <SwiperSlide>
       <div className={styles.slideScrollable}>
         <StatisticsBlock />
+      </div>
+    </SwiperSlide>
+    <SwiperSlide>
+      <div className={styles.slideScrollable}>
+        <Settings />
       </div>
     </SwiperSlide>
   </Swiper>

@@ -1,0 +1,83 @@
+@use "../../../styles/helpers/" as *;
+
+.loginSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-crypto-background);
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
+  padding: rem(30);
+  box-shadow: var(--box-shadow);
+
+  &__title {
+    color: var(--color-text-overlay);
+    text-align: center;
+    margin-bottom: rem(20);
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(16);
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(10);
+    padding: rem(14) rem(20);
+    border: var(--border);
+    border-radius: var(--categorie-border-radius);
+    font-size: rem(18);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-duration), color var(--transition-duration),
+      box-shadow var(--transition-duration);
+    background: var(--color-dark);
+    color: #fff;
+    box-shadow: var(--box-shadow);
+
+    &:hover {
+      background: var(--color-accent);
+      color: var(--color-dark);
+    }
+  }
+
+  &__btn.google {
+    background: #fff;
+    color: #222;
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+
+  &__btn.facebook {
+    background: #4267b2;
+    color: #fff;
+    &:hover {
+      background: #365899;
+    }
+  }
+
+  &__btn.twitter {
+    background: #1da1f2;
+    color: #fff;
+    &:hover {
+      background: #1991da;
+    }
+  }
+
+  &__btn.github {
+    background: #171515;
+    color: #fff;
+    &:hover {
+      background: #23272c;
+    }
+  }
+}

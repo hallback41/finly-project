@@ -1,0 +1,53 @@
+// src/components/ThemeSelector/ThemeSelector.module.scss
+@use "../../../styles/helpers/" as *;
+
+.selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
+  background-color: var(--color-crypto-background);
+  padding: rem(30);
+  box-shadow: var(--box-shadow);
+
+  &__title {
+    color: var(--color-text-overlay);
+    text-align: center;
+    padding-block: rem(10);
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: rem(10);
+    color: var(--color-text-overlay);
+    max-width: rem(600);
+
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__button {
+    padding: rem(14) rem(20);
+    background-color: var(--color-dark);
+    color: white;
+    font-size: rem(18);
+    font-weight: 600;
+    border: var(--border);
+    border-radius: var(--categorie-border-radius);
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &.active {
+      background-color: var(--color-accent);
+      color: var(--color-dark);
+    }
+
+    &:hover {
+      background-color: var(--color-red);
+    }
+  }
+}
