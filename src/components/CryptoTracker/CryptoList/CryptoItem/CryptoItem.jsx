@@ -28,7 +28,7 @@ const CryptoItem = React.memo(({ coin, onDelete }) => {
         </button>
       </div>
       <div className={`${styles["crypto-item__chart-block"]} ${open ? styles.open : ""}`}>
-        {open && <CryptoChart coinId={coin.id} />}
+        <CryptoChart coinId={coin.id} />
       </div>
     </div>
   );
