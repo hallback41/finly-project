@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./DataExpensesSelect.module.scss";
 
-const monthsList = ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"];
-
+const monthsList = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, selectedYear, setSelectedYear }) => {
   const yearsWithExpenses = React.useMemo(() => {
     return new Set(expenses.map((exp) => new Date(exp.date).getFullYear()));
@@ -24,7 +23,7 @@ const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, se
     <div className={styles["expenses-select"]}>
       {/* Враппер для года */}
       <div className={styles["expenses-select__section"]}>
-        <span className={styles["expenses-select__title"]}>Год:</span>
+        <span className={styles["expenses-select__title"]}>Year:</span>
         <div className={styles["expenses-select__years"]}>
           {availableYears.map((year) => {
             const hasExpenses = yearsWithExpenses.has(year);
@@ -51,7 +50,7 @@ const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, se
 
       {/* Враппер для месяцев */}
       <div className={styles["expenses-select__section"]}>
-        <span className={styles["expenses-select__title"]}>Месяц:</span>
+        <span className={styles["expenses-select__title"]}>Month:</span>
         <div className={styles["expenses-select__grid"]}>
           {monthsList.map((month, i) => {
             const isActive = activeMonths.has(i);

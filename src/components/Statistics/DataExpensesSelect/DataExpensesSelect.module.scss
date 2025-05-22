@@ -6,6 +6,7 @@
   align-items: center;
   padding: rem(24) rem(16);
   border: var(--border);
+  font-family: var(--font-family-them);
   border-radius: var(--categorie-border-radius);
   background: var(--color-statistics-background);
   box-shadow: var(--box-shadow);
@@ -98,6 +99,7 @@
     min-width: rem(78);
     background: rgba(30, 30, 30, 0.18);
     color: var(--color-light);
+
     cursor: pointer;
     border: var(--border);
     box-shadow: var(--box-shadow);
