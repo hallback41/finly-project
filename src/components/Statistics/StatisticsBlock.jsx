@@ -43,6 +43,7 @@ const StatisticsBlock = () => {
         selectedMonth={selectedMonth}
         setSelectedMonth={setSelectedMonth}
         selectedYear={selectedYear}
+        setSelectedYear={setSelectedYear}
       />
       <Charts expenses={filteredExpenses} />
       <ExpensesList expenses={filteredExpenses} />
