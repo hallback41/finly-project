@@ -28,7 +28,9 @@ export const DatabaseProvider = ({ children }) => {
   };
 
   return (
-    <DatabaseContext.Provider value={{ categories, updateCategorie, resetCategories, removeExpenseFromCategory }}>
+    <DatabaseContext.Provider
+      value={{ categories, updateCategorie, resetCategories, removeExpenseFromCategory, setCategories }}
+    >
       {children}
     </DatabaseContext.Provider>
   );
