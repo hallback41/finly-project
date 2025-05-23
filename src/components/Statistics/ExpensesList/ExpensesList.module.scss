@@ -27,6 +27,8 @@
 }
 
 .day-separator {
-  text-align: center;
-  color: var(--color-light);
+  text-align: start;
+  padding-left: rem(20);
+  color: var(--color-accent);
+  font-family: var(--font-family-them);
 }

@@ -20,8 +20,8 @@
   font-size: rem(26);
   font-weight: 600;
   border: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  border-radius: var(--border-radius-theme);
+  transition: background-color var(--transition-duration) ease;
   cursor: pointer;
 }
 

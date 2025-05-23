@@ -1,0 +1,24 @@
+@use "../../../styles/helpers/" as *;
+
+.total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: rem(30);
+  color: var(--color-text-overlay);
+  font-family: var(--font-family-them);
+  font-size: rem(44);
+  background-color: var(--color-statistics-background);
+  border: var(--border);
+  border-radius: var(--border-radius-theme);
+  box-shadow: var(--box-shadow);
+  margin-bottom: rem(20);
+
+  &__label {
+    color: var(--color-red);
+  }
+
+  &__value {
+    color: var(--color-accent);
+  }
+}

@@ -6,6 +6,7 @@ import ThemeVideoBackground from "../CategoriesBlock/ThemeVideoBackground";
 import { useDatabase } from "../../context/DataBaseContext";
 import { useTheme } from "@/context/ThemeContext";
 import Charts from "./ChartsBlock/Charts/Charts";
+import TotalSum from "./TotalSum/TotalSum";
 
 const StatisticsBlock = () => {
   const { currentTheme } = useTheme();
@@ -46,6 +47,7 @@ const StatisticsBlock = () => {
         setSelectedYear={setSelectedYear}
       />
       <Charts expenses={filteredExpenses} />
+      <TotalSum expenses={filteredExpenses} month={selectedMonth} year={selectedYear} />
       <ExpensesList expenses={filteredExpenses} />
     </div>
   );
