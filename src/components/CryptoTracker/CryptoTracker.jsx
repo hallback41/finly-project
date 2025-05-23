@@ -1,7 +1,7 @@
 import styles from "./CryptoTracker.module.scss";
 import CryptoSelector from "./CryptoSelector/CryptoSelector";
 import CryptoList from "./CryptoList/CryptoList";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import ThemeVideoBackground from "../CategoriesBlock/ThemeVideoBackground";
 import { useTheme } from "@/context/ThemeContext";
 import useLocalStorage from "../../hooks/useLocalStorage";

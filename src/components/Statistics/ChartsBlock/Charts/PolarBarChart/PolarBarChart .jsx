@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback } from "react";
+import { useRef, useMemo, useCallback } from "react";
 import * as echarts from "echarts";
 import styles from "./PolarBarChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
@@ -7,11 +7,9 @@ import useEChart from "@/hooks/useECharts";
 
 const PolarBarChart = ({ expenses }) => {
   const chartRef = useRef(null);
-  const { categories } = useDatabase(); // Всё равно нужны названия, цвета и id категорий
+  const { categories } = useDatabase();
 
-  // Считаем суммы только по expenses, а не по всем категориям!
   const categorySums = useMemo(() => {
-    // Сгруппировать расходы по категориям
     return categories.map((cat) => {
       const catExpenses = expenses.filter((exp) => exp.categoryId === cat.id);
       return {
@@ -52,6 +50,8 @@ const PolarBarChart = ({ expenses }) => {
       };
     });
   }, [categorySums, getColor, maxSum]);
+
+  const fontFamily = getComputedStyle(document.documentElement).getPropertyValue("--font-family-them").trim();
 
   useEChart(
     chartRef,

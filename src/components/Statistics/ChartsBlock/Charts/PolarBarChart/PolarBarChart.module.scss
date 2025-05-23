@@ -7,6 +7,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: var(--border);
+  border-radius: var(--border-radius-theme);
 }
 
 .chartWrapper {
@@ -32,6 +34,7 @@
   list-style: none;
   padding-left: rem(60);
   width: rem(150);
+  font-family: var(--font-family-them);
 
   @include mobile {
     display: none;

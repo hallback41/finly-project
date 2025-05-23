@@ -13,8 +13,11 @@
   color: var(--color-text, #fff);
   font-size: rem(24);
   font-family: var(--font-family-them);
+  border: var(--border);
+  border-radius: var(--border-radius-theme);
+  box-shadow: var(--box-shadow);
 
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-duration) ease;
 
   &:hover {
     background-color: var(--color-statistics-background-hover);

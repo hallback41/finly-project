@@ -1,12 +1,14 @@
-import React, { useRef, useMemo, useCallback } from "react";
+import React, { useRef, useMemo, useCallback, useEffect } from "react";
 import * as echarts from "echarts";
 import styles from "./BarRaceChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
 import useEChart from "@/hooks/useECharts";
+import { useTheme } from "../../../../../context/ThemeContext";
 
 const BarRaceChart = ({ expenses }) => {
   const chartRef = useRef(null);
   const { categories } = useDatabase();
+  const { currentTheme } = useTheme();
 
   const getColor = useCallback((varName) => {
     return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -52,65 +54,95 @@ const BarRaceChart = ({ expenses }) => {
 
   useEChart(
     chartRef,
-    () => ({
-      xAxis: {
-        max: "dataMax",
-        show: false,
-      },
-      yAxis: {
-        type: "category",
-        data: categoryNames,
-        inverse: true,
-        axisLine: { show: false },
-        axisTick: { show: false },
-        axisLabel: { show: false },
-      },
-      series: [
-        {
-          type: "bar",
-          data: backgroundData,
-          barWidth: 50,
-          itemStyle: {
-            color: "rgba(255,255,255,0.2)",
-            borderRadius: 16,
-          },
-          silent: true,
-          barGap: "-100%",
-          z: 1,
+    () => {
+      const fontFamily =
+        getComputedStyle(document.documentElement).getPropertyValue("--font-family-them").trim() ||
+        "Inter, Segoe UI, Arial, sans-serif";
+
+      return {
+        xAxis: {
+          max: "dataMax",
+          show: false,
         },
-        {
-          type: "bar",
-          data: barData,
-          barWidth: 50,
-          label: {
-            show: true,
-            position: "insideLeft",
-            formatter: (params) => `${params.name}: ${params.data.realValue}`,
-            color: "#000",
-            fontWeight: "bold",
-            fontSize: 22,
-            textBorderColor: "#fff",
-            textBorderWidth: 3,
-            align: "left",
-            verticalAlign: "middle",
-            distance: 10,
-            labelLayout: {
-              moveOverlap: "shiftY",
+        yAxis: {
+          type: "category",
+          data: categoryNames,
+          inverse: true,
+          axisLine: { show: false },
+          axisTick: { show: false },
+          axisLabel: { show: false },
+        },
+        series: [
+          {
+            type: "bar",
+            data: backgroundData,
+            barWidth: 50,
+            itemStyle: {
+              color: "rgba(255,255,255,0.2)",
+              borderRadius: 16,
             },
+            silent: true,
+            barGap: "-100%",
+            z: 1,
           },
-          z: 2,
+          {
+            type: "bar",
+            data: barData,
+            barWidth: 50,
+            label: {
+              show: true,
+              position: "insideLeft",
+              formatter: (params) => `${params.name}: ${params.data.realValue}`,
+              fontFamily,
+              color: "#000",
+              fontWeight: "bold",
+              fontSize: 22,
+              textBorderColor: "#fff",
+              textBorderWidth: 3,
+              align: "left",
+              verticalAlign: "middle",
+              distance: 10,
+              labelLayout: {
+                moveOverlap: "shiftY",
+              },
+            },
+            z: 2,
+          },
+        ],
+        grid: {
+          top: 30,
+          bottom: 30,
+          left: 30,
+          right: 30,
         },
-      ],
-      grid: {
-        top: 30,
-        bottom: 30,
-        left: 30,
-        right: 30,
-      },
-      animationDurationUpdate: 500,
-    }),
-    [barData, backgroundData, categoryNames]
+        animationDurationUpdate: 500,
+      };
+    },
+    [barData, backgroundData, categoryNames, currentTheme]
   );
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!chartRef.current) return;
+      const chart = echarts.getInstanceByDom(chartRef.current);
+      if (chart) {
+        const fontFamily = getComputedStyle(document.documentElement).getPropertyValue("--font-family-them").trim();
+        chart.setOption(
+          {
+            series: [
+              {},
+              {
+                label: { fontFamily },
+              },
+            ],
+          },
+          false
+        );
+      }
+    }, 30);
+
+    return () => clearTimeout(timeout);
+  }, [currentTheme]);
 
   return <div ref={chartRef} className={styles.chart} style={{ width: "100%", height: "800px" }} />;
 };

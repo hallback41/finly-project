@@ -5,7 +5,9 @@
   min-height: rem(800);
   position: relative;
   background-color: var(--color-statistics-background);
-  border-radius: var(--categorie-border-radius);
+  border: var(--border);
+  border-radius: var(--border-radius-theme);
+  box-shadow: var(--box-shadow);
 
   @include laptop {
     min-height: rem(600);
@@ -13,4 +15,14 @@
   @include mobile {
     min-height: rem(400);
   }
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  padding-left: rem(60);
+  width: rem(150);
+  font-family: var(--font-family-them);
 }

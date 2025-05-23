@@ -10,7 +10,7 @@ const useEChart = (ref, getOption, deps = []) => {
     }
 
     const instance = echarts.init(ref.current);
-    instance.setOption(getOption());
+    instance.setOption(getOption(), true); // <<< FORCE UPDATE enabled
 
     const resizeHandler = () => instance.resize();
     window.addEventListener("resize", resizeHandler);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { usePaprikaCoins } from "../../../hooks/usePaprikaCoins";
 import styles from "./CryptoSelector.module.scss";
 import ImageWithFallback from "../../UI/ImageWithFallback";
