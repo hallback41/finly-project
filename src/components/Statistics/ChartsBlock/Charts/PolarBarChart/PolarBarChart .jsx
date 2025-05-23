@@ -51,8 +51,6 @@ const PolarBarChart = ({ expenses }) => {
     });
   }, [categorySums, getColor, maxSum]);
 
-  const fontFamily = getComputedStyle(document.documentElement).getPropertyValue("--font-family-them").trim();
-
   useEChart(
     chartRef,
     () => ({
