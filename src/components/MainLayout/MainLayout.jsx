@@ -10,7 +10,7 @@ import Settings from "../Settings/Settings";
 import styles from "./MainLayout.module.scss";
 
 const MainSwiper = () => (
-  <Swiper spaceBetween={32} slidesPerView={1} initialSlide={3} style={{ height: "100vh" }}>
+  <Swiper spaceBetween={32} slidesPerView={1} initialSlide={1} style={{ height: "100vh" }}>
     <SwiperSlide>
       <div className={styles.slideScrollable}>
         <CryptoTracker />

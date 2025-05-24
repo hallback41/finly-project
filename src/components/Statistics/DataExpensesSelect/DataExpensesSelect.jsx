@@ -1,8 +1,25 @@
 import React from "react";
 import styles from "./DataExpensesSelect.module.scss";
+import { useTranslation } from "react-i18next";
 
-const monthsList = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const monthsList = [
+  "MONTH_JAN",
+  "MONTH_FEB",
+  "MONTH_MAR",
+  "MONTH_APR",
+  "MONTH_MAY",
+  "MONTH_JUN",
+  "MONTH_JUL",
+  "MONTH_AUG",
+  "MONTH_SEP",
+  "MONTH_OCT",
+  "MONTH_NOV",
+  "MONTH_DEC",
+];
+
 const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, selectedYear, setSelectedYear }) => {
+  const { t } = useTranslation();
+
   const yearsWithExpenses = React.useMemo(() => {
     return new Set(expenses.map((exp) => new Date(exp.date).getFullYear()));
   }, [expenses]);
@@ -23,7 +40,7 @@ const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, se
     <div className={styles["expenses-select"]}>
       {/* Враппер для года */}
       <div className={styles["expenses-select__section"]}>
-        <span className={styles["expenses-select__title"]}>Year:</span>
+        <span className={styles["expenses-select__title"]}>{t("Year")}</span>
         <div className={styles["expenses-select__years"]}>
           {availableYears.map((year) => {
             const hasExpenses = yearsWithExpenses.has(year);
@@ -50,7 +67,7 @@ const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, se
 
       {/* Враппер для месяцев */}
       <div className={styles["expenses-select__section"]}>
-        <span className={styles["expenses-select__title"]}>Month:</span>
+        <span className={styles["expenses-select__title"]}>{t("Month")}</span>
         <div className={styles["expenses-select__grid"]}>
           {monthsList.map((month, i) => {
             const isActive = activeMonths.has(i);
@@ -67,7 +84,7 @@ const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, se
                 disabled={!isActive}
                 type="button"
               >
-                {month}
+                {t(month)}
               </button>
             );
           })}

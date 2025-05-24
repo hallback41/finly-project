@@ -2,8 +2,10 @@ import { useState } from "react";
 import { usePaprikaCoins } from "../../../hooks/usePaprikaCoins";
 import styles from "./CryptoSelector.module.scss";
 import ImageWithFallback from "../../UI/ImageWithFallback";
+import { useTranslation } from "react-i18next";
 
 const CryptoSelector = ({ onSelect }) => {
+  const { t } = useTranslation();
   const { coins, loading } = usePaprikaCoins();
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
@@ -16,18 +18,18 @@ const CryptoSelector = ({ onSelect }) => {
   return (
     <div className={`${styles["crypto-selector"]} container`}>
       <button className={styles["crypto-selector__add-btn"]} onClick={() => setIsOpen((open) => !open)}>
-        {isOpen ? "Close" : "Add coin"}
+        {isOpen ? t("Close") : t("Add coin")}
       </button>
       <div className={`${styles["crypto-selector__dropdown"]} ${isOpen ? styles.open : ""}`}>
         <input
           className={styles["crypto-selector__search"]}
           type="text"
-          placeholder="Search..."
+          placeholder={t("Search...")}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         {loading ? (
-          <div>Загрузка...</div>
+          <div>{t("Loading...")}</div>
         ) : (
           <ul className={styles["crypto-selector__list"]}>
             {filteredCoins.map((coin) => (

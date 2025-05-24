@@ -30,18 +30,75 @@
   flex-direction: column;
   align-items: center;
   padding: 1.5rem 1rem;
-  border-radius: 1.75rem;
+  border: var(--border);
+  font-family: var(--font-family-them);
+  border-radius: var(--categorie-border-radius);
   background: var(--color-statistics-background);
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.1333333333);
+  box-shadow: var(--box-shadow);
   margin: 1.25rem auto;
   min-width: 100%;
 }
+.expenses-select__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+@media (width <= 47.99875rem) {
+  .expenses-select__section {
+    margin-bottom: 0.875rem;
+  }
+}
 .expenses-select__title {
-  color: #fff;
-  font-size: 2rem;
-  font-weight: 600;
+  color: var(--color-text-overlay);
+  font-size: 2.625rem;
   margin-bottom: 1.125rem;
   text-align: center;
+}
+.expenses-select__years {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  margin-left: 1rem;
+}
+@media (width <= 47.99875rem) {
+  .expenses-select__years {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-left: 0;
+  }
+}
+.expenses-select__year-btn {
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
+  padding: 0.75rem 1.125rem;
+  min-width: 4.375rem;
+  background: rgba(30, 30, 30, 0.18);
+  color: var(--color-light);
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  opacity: 0.38;
+  transition: all var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+}
+.expenses-select__year-btn--active {
+  background: var(--color-dark-10);
+  opacity: 1;
+}
+.expenses-select__year-btn--active:hover {
+  background: var(--color-accent);
+  color: var(--color-dark-10);
+  box-shadow: var(--box-shadow);
+}
+.expenses-select__year-btn--inactive {
+  opacity: 0.25;
+  cursor: not-allowed;
+  background: rgba(30, 30, 30, 0.08);
+}
+.expenses-select__year-btn--selected {
+  background: var(--color-accent);
+  color: var(--color-dark-10);
+  opacity: 1;
 }
 .expenses-select__grid {
   display: grid;
@@ -57,35 +114,34 @@
 }
 .expenses-select__btn {
   border: none;
-  border-radius: 40px;
-  font-size: 1.3rem;
+  border-radius: var(--categorie-border-radius);
   font-weight: 700;
   padding: 1.125rem 0.5rem;
   min-width: 4.875rem;
   background: rgba(30, 30, 30, 0.18);
-  color: #fff;
+  color: var(--color-light);
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  border: var(--border);
+  box-shadow: var(--box-shadow);
   opacity: 0.38;
-  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
 }
 .expenses-select__btn--active {
-  background: #222;
+  background: var(--color-dark-10);
   opacity: 1;
-  cursor: pointer;
 }
 .expenses-select__btn--active:hover {
-  background: #ffd600;
-  color: #232323;
-  box-shadow: 0 2px 18px rgba(255, 227, 92, 0.4);
+  background: var(--color-accent);
+  color: var(--color-dark-10);
+  box-shadow: var(--box-shadow);
 }
 .expenses-select__btn--inactive {
   opacity: 0.28;
   cursor: not-allowed;
 }
 .expenses-select__btn--selected {
-  background: #ffd600;
+  background: var(--color-accent);
   color: #222;
-  border: 2px solid #fff;
+  border: var(--border);
   opacity: 1;
 }/*# sourceMappingURL=DataExpensesSelect.module.css.map */

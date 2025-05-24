@@ -41,6 +41,7 @@
   font-family: var(--font-family-them);
   background: var(--color-statistics-background-hover);
   padding: 2.5rem;
+  border: var(--border);
   border-radius: var(--statistics-btn-border-radius);
   max-width: 31.25rem;
   width: 100%;

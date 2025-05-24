@@ -1,6 +1,11 @@
 import styles from "./TotalSum.module.scss";
+import { useTranslation } from "react-i18next";
+import { useCurrency } from "../../../context/CurrencyContext"; // добавь импорт
 
 const TotalSum = ({ expenses, month, year }) => {
+  const { t } = useTranslation();
+  const { currency } = useCurrency(); // получаем текущую валюту
+
   const total = expenses
     .filter((exp) => {
       const d = new Date(exp.date);
@@ -10,8 +15,10 @@ const TotalSum = ({ expenses, month, year }) => {
 
   return (
     <div className={styles.total}>
-      <span className={styles.total__label}>Total spent: </span>
-      <span className={styles.total__value}> {total} $</span>
+      <span className={styles.total__label}>{t("Total spent")}:</span>
+      <span className={styles.total__value}>
+        {total} {currency.symbol}
+      </span>
     </div>
   );
 };

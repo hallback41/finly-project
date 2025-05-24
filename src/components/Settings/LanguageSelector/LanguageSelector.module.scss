@@ -21,7 +21,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: rem(16);
     width: 100%;
-    max-width: 500px;
+    max-width: rem(600);
 
     @include mobile {
       grid-template-columns: repeat(2, 1fr);

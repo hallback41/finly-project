@@ -36,6 +36,7 @@
   font-family: var(--font-family-them);
   color: var(--color-text);
   border-radius: var(--categorie-border-radius);
+  z-index: 1;
 }
 .crypto-selector__add-btn {
   min-width: 100%;
@@ -113,6 +114,7 @@
   border-bottom: 0.125rem solid var(--color-gray-60);
   border-left: none;
   transition: background var(--transition-duration);
+  z-index: 1;
 }
 .crypto-selector__item:hover {
   background: var(--color-dark-40);

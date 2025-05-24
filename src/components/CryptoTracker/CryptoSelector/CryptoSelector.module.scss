@@ -11,6 +11,7 @@
   font-family: var(--font-family-them);
   color: var(--color-text);
   border-radius: var(--categorie-border-radius);
+  z-index: 1;
 
   &__add-btn {
     min-width: 100%;
@@ -95,6 +96,7 @@
     border-bottom: rem(2) solid var(--color-gray-60);
     border-left: none;
     transition: background var(--transition-duration);
+    z-index: 1;
 
     &:hover {
       background: var(--color-dark-40);

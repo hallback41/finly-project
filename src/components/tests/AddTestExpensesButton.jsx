@@ -21,15 +21,21 @@ const AddTestExpensesButton = () => {
       years.forEach((year) => {
         months.forEach((month) => {
           const daysInMonth = new Date(year, parseInt(month), 0).getDate();
-          for (let i = 0; i < 10; i++) {
-            const randomDay = Math.floor(Math.random() * daysInMonth) + 1;
+
+          // В этом месяце всего 10 трат (разных дней)
+          const usedDays = new Set();
+          while (usedDays.size < 10) {
+            usedDays.add(Math.floor(Math.random() * daysInMonth) + 1);
+          }
+
+          Array.from(usedDays).forEach((randomDay) => {
             const date = `${year}-${month}-${randomDay.toString().padStart(2, "0")}T12:00:00.000Z`;
             expenses.push({
               id: crypto.randomUUID(),
               amount: Math.floor(Math.random() * 500) + 1,
               date,
             });
-          }
+          });
         });
       });
 
@@ -37,7 +43,7 @@ const AddTestExpensesButton = () => {
     });
 
     setCategories(newCategories);
-    alert("Тестовые траты за все года и все месяцы добавлены по всем категориям!");
+    alert("Тестовые траты (по 10 на месяц) добавлены по всем категориям!");
   };
 
   return (
@@ -55,7 +61,7 @@ const AddTestExpensesButton = () => {
       }}
       onClick={handleAddTestExpenses}
     >
-      Add test expenses (all years & months)
+      Add test expenses (10 per month)
     </button>
   );
 };

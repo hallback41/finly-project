@@ -1,13 +1,16 @@
 import styles from "./ExpensesItem.module.scss";
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { formatDate } from "../../../utils/formatDate";
 import { useDatabase } from "../../../context/DataBaseContext";
-import { useCallback, useState } from "react";
 import ConfirmModal from "../../UI/ConfirmModal";
+import { useTranslation } from "react-i18next";
+import { useCurrency } from "../../../context/CurrencyContext"; // Импортируй хук
 
 const ExpensesItem = ({ id, categoryId, amount, date, category }) => {
   const { removeExpenseFromCategory } = useDatabase();
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+  const { currency } = useCurrency(); // Получи объект валюты
 
   const handleConfirm = useCallback(() => {
     removeExpenseFromCategory(categoryId, id);
@@ -24,10 +27,14 @@ const ExpensesItem = ({ id, categoryId, amount, date, category }) => {
     <>
       <li className={styles.item}>
         <span className={styles["item__date"]}>{formatDate(date)}</span>
-        <span className={styles["item__category"]}>{category}</span>
-        <span className={styles["item__amount"]}>{`${amount}\u00A0$`}</span>
+        <span className={styles["item__category"]}>{t(category)}</span>
+        {/* Используй currency.symbol */}
+        <span className={styles["item__amount"]}>
+          {amount}
+          <span style={{ marginLeft: 4 }}>{currency.symbol}</span>
+        </span>
         <button className={styles["item__deleteBtn"]} onClick={() => setIsOpen(true)}>
-          Delete
+          {t("Delete")}
         </button>
       </li>
 
@@ -35,9 +42,9 @@ const ExpensesItem = ({ id, categoryId, amount, date, category }) => {
         open={isOpen}
         onClose={() => setIsOpen(false)}
         onConfirm={handleConfirm}
-        title="Delete expense?"
-        confirmText="Confirm"
-        cancelText="Back"
+        title={t("Delete expense?")}
+        confirmText={t("Confirm")}
+        cancelText={t("Back")}
         className={styles["item__modal"]}
         onKeyDown={handleKeyDown}
       />

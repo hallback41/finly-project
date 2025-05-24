@@ -249,6 +249,7 @@ svg * {
   --statistics-font-color: #faf8f8;
   --statistics-amount-font--color: #ffd11a;
   --font-family-base: "Monocraft", sans-serif;
+  --font-family-them: "Monocraft", sans-serif;
   --categorie-border-style: solid;
   --category-border-height: 0.3125rem;
   --category-border-color: rgb(252, 251, 251);

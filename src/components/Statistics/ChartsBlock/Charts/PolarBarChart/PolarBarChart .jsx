@@ -2,12 +2,13 @@ import { useRef, useMemo, useCallback } from "react";
 import * as echarts from "echarts";
 import styles from "./PolarBarChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
-import { getCategorySums } from "@/utils/getCategorySums";
+import { useTranslation } from "react-i18next";
 import useEChart from "@/hooks/useECharts";
 
 const PolarBarChart = ({ expenses }) => {
   const chartRef = useRef(null);
   const { categories } = useDatabase();
+  const { t } = useTranslation();
 
   const categorySums = useMemo(() => {
     return categories.map((cat) => {
@@ -24,7 +25,7 @@ const PolarBarChart = ({ expenses }) => {
     return Math.max(...categorySums.map((cat) => cat.sum)) || 1;
   }, [categorySums]);
 
-  const categoryNames = useMemo(() => categorySums.map((cat) => cat.name), [categorySums]);
+  const categoryNames = useMemo(() => categorySums.map((cat) => t(cat.name)), [categorySums, t]);
 
   const getColor = useCallback((varName) => {
     return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -37,7 +38,7 @@ const PolarBarChart = ({ expenses }) => {
       return {
         value,
         realValue: cat.sum,
-        name: cat.name,
+        name: t(cat.name),
         itemStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 1, 1, [
             { offset: 0, color: getColor(`--${cat.id}-gradient-1`) },
@@ -49,7 +50,7 @@ const PolarBarChart = ({ expenses }) => {
         },
       };
     });
-  }, [categorySums, getColor, maxSum]);
+  }, [categorySums, getColor, maxSum, t]);
 
   useEChart(
     chartRef,
@@ -66,7 +67,7 @@ const PolarBarChart = ({ expenses }) => {
       },
       radiusAxis: {
         type: "category",
-        data: categoryNames,
+        data: categorySums.map((cat) => t(cat.name)),
         axisLine: { show: false },
         axisTick: { show: false },
         axisLabel: { show: false },
@@ -112,7 +113,7 @@ const PolarBarChart = ({ expenses }) => {
         },
       ],
     }),
-    [categorySums, categoryNames, maxSum, data]
+    [categorySums, maxSum, data, t]
   );
 
   return (
@@ -127,7 +128,7 @@ const PolarBarChart = ({ expenses }) => {
                   background: `linear-gradient(to right, var(--${cat.id}-gradient-1), var(--${cat.id}-gradient-2))`,
                 }}
               />
-              <span className={styles.legendLabel}>{cat.name}</span>
+              <span className={styles.legendLabel}>{t(cat.name)}</span>
             </li>
           ))}
         </ul>

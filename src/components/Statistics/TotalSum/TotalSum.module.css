@@ -25,32 +25,23 @@
     filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
   }
 }
-.chart {
-  width: 100%;
-  min-height: 50rem;
-  position: relative;
+.total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.875rem;
+  color: var(--color-text-overlay);
+  font-family: var(--font-family-them);
+  font-size: 2.75rem;
   background-color: var(--color-statistics-background);
   border: var(--border);
   border-radius: var(--border-radius-theme);
   box-shadow: var(--box-shadow);
+  margin-bottom: 1.25rem;
 }
-@media (width <= 90.06125rem) {
-  .chart {
-    min-height: 37.5rem;
-  }
+.total__label {
+  color: var(--color-red);
 }
-@media (width <= 47.99875rem) {
-  .chart {
-    min-height: 25rem;
-  }
-}
-
-.label {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  list-style: none;
-  padding-left: 3.75rem;
-  width: 9.375rem;
-  font-family: var(--font-family-them);
-}/*# sourceMappingURL=BarRaceChart.module.css.map */
+.total__value {
+  color: var(--color-accent);
+}/*# sourceMappingURL=TotalSum.module.css.map */

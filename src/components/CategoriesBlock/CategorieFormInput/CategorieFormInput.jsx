@@ -3,12 +3,14 @@ import styles from "./CategorieFormInput.module.scss";
 import allIcons from "../../../utils/getCategoryIcon";
 import { useTheme } from "../../../context/ThemeContext";
 import { useDatabase } from "../../../context/DataBaseContext";
+import { useTranslation } from "react-i18next";
 
 const CategorieFormInput = ({ name, id, setHasError, onSuccess }) => {
   const [amount, setAmount] = useState("");
   const inputRef = useRef(null);
   const { currentTheme } = useTheme();
   const { updateCategorie, categories } = useDatabase();
+  const { t } = useTranslation();
 
   const icon = allIcons?.[currentTheme]?.[id];
 
@@ -76,7 +78,7 @@ const CategorieFormInput = ({ name, id, setHasError, onSuccess }) => {
         </div>
 
         <button className={styles["form__btn"]} type="submit">
-          ADD
+          {t("ADD")}
         </button>
       </form>
     </div>

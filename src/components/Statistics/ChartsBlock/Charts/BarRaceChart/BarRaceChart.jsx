@@ -4,11 +4,13 @@ import styles from "./BarRaceChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
 import useEChart from "@/hooks/useECharts";
 import { useTheme } from "../../../../../context/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const BarRaceChart = ({ expenses }) => {
   const chartRef = useRef(null);
   const { categories } = useDatabase();
   const { currentTheme } = useTheme();
+  const { t } = useTranslation();
 
   const getColor = useCallback((varName) => {
     return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -37,7 +39,7 @@ const BarRaceChart = ({ expenses }) => {
       const displayValue = cat.sum < maxSum * MIN_PERCENT ? maxSum * MIN_PERCENT : cat.sum;
       return {
         value: displayValue,
-        name: cat.name,
+        name: t(cat.name),
         realValue: cat.sum,
         itemStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
@@ -48,9 +50,9 @@ const BarRaceChart = ({ expenses }) => {
         },
       };
     });
-  }, [categorySums, getColor, maxSum]);
+  }, [categorySums, getColor, maxSum, t]);
 
-  const categoryNames = useMemo(() => categorySums.map((cat) => cat.name), [categorySums]);
+  const categoryNames = useMemo(() => categorySums.map((cat) => t(cat.name)), [categorySums, t]);
 
   useEChart(
     chartRef,
@@ -142,7 +144,7 @@ const BarRaceChart = ({ expenses }) => {
     }, 30);
 
     return () => clearTimeout(timeout);
-  }, [currentTheme]);
+  }, [currentTheme, t]);
 
   return <div ref={chartRef} className={styles.chart} style={{ width: "100%", height: "800px" }} />;
 };
