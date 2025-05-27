@@ -45,6 +45,9 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
+.loginSection__buttons:has(> *:only-child) {
+  grid-template-columns: 1fr;
+}
 @media (width <= 47.99875rem) {
   .loginSection__buttons {
     grid-template-columns: 1fr;
