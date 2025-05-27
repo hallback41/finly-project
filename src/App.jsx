@@ -5,6 +5,8 @@ import MainLayout from "./components/MainLayout/MainLayout";
 import { CurrencyProvider } from "./context/CurrencyContext";
 import i18n from "./i18n";
 import { testFirestoreCRUD } from "./testFirestore";
+import { AuthProvider } from "./context/AuthContext";
+import { DatabaseProvider } from "./context/DataBaseContext.jsx";
 
 function App() {
   const savedLang = localStorage.getItem("lang");
@@ -17,11 +19,15 @@ function App() {
   }, []);
 
   return (
-    <ThemeProvider>
-      <CurrencyProvider>
-        <MainLayout />
-      </CurrencyProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <DatabaseProvider>
+        <ThemeProvider>
+          <CurrencyProvider>
+            <MainLayout />
+          </CurrencyProvider>
+        </ThemeProvider>
+      </DatabaseProvider>
+    </AuthProvider>
   );
 }
 

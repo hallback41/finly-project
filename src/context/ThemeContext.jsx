@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+// import useLocalStorage from "../hooks/useLocalStorage";
+import useCloudLocalStorage from "../hooks/useCloudLocalStorage";
 import useAdaptiveTheme from "../hooks/useAdaptiveTheme";
 
 const ThemeContext = createContext();
@@ -7,7 +8,7 @@ const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-  const [currentTheme, setCurrentTheme] = useLocalStorage("finly_theme", "ios");
+  const [currentTheme, setCurrentTheme] = useCloudLocalStorage("finly_theme", "ios");
   const [activeTheme, setActiveTheme] = useState(currentTheme);
   useAdaptiveTheme(currentTheme, setCurrentTheme);
 

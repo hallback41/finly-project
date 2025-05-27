@@ -1,11 +1,12 @@
 import { createContext, useContext } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+// import useLocalStorage from "../hooks/useLocalStorage";
+import useCloudLocalStorage from "../hooks/useCloudLocalStorage";
 import categoriesData from "../components/categoriesData/categoriesData";
 
 const DatabaseContext = createContext();
 
 export const DatabaseProvider = ({ children }) => {
-  const [categories, setCategories] = useLocalStorage("finly_categoriesData", categoriesData);
+  const [categories, setCategories] = useCloudLocalStorage("finly_categoriesData", categoriesData);
 
   const updateCategorie = (id, updatedFields) => {
     setCategories((prev) => prev.map((cat) => (cat.id === id ? { ...cat, ...updatedFields } : cat)));
