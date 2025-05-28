@@ -1,10 +1,10 @@
 import styles from "./CategoriesBlock.module.scss";
-import React, { useCallback, useState } from "react";
 import Categorie from "./Categorie";
 import { useTheme } from "@/context/ThemeContext";
 import ThemeVideoBackground from "./ThemeVideoBackground";
+import React, { useCallback, useState, useEffect } from "react";
 
-const CategoriesBlock = ({ categoriesData }) => {
+const CategoriesBlock = ({ categoriesData = [] }) => {
   const [activeId, setActiveId] = useState(null);
   const { currentTheme } = useTheme();
 

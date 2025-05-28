@@ -11,7 +11,6 @@
   border-image-slice: 1;
   z-index: 1;
 
-  //фальш бордер
   &::before {
     content: "";
     position: absolute;
@@ -54,6 +53,7 @@
   &__wrapper {
     display: flex;
     height: var(--category-height-desktop);
+    z-index: 1;
 
     @include laptop {
       height: var(--category-height-laptop);

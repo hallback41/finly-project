@@ -35,10 +35,20 @@
   padding: 1.875rem;
   box-shadow: var(--box-shadow);
 }
+@media (width <= 47.99875rem) {
+  .languageSelector {
+    padding: 0.625rem;
+  }
+}
 .languageSelector__title {
   color: var(--color-text-overlay);
   text-align: center;
   margin-bottom: 1.25rem;
+}
+@media (width <= 47.99875rem) {
+  .languageSelector__title {
+    margin-bottom: 0.625rem;
+  }
 }
 .languageSelector__buttons {
   display: grid;
@@ -67,6 +77,12 @@
   background: var(--color-dark);
   color: #fff;
   box-shadow: var(--box-shadow);
+}
+@media (width <= 47.99875rem) {
+  .languageSelector__btn {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+  }
 }
 .languageSelector__btn:hover, .languageSelector__btn.active {
   background: var(--color-accent);

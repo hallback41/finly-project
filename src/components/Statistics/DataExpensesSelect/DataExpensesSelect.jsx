@@ -25,7 +25,7 @@ const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, se
   }, [expenses]);
 
   const thisYear = new Date().getFullYear();
-  const availableYears = Array.from({ length: 5 }, (_, i) => thisYear - i).reverse();
+  const availableYears = Array.from({ length: 3 }, (_, i) => thisYear - i).reverse();
 
   const activeMonths = React.useMemo(() => {
     const set = new Set();
@@ -40,7 +40,7 @@ const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, se
     <div className={styles["expenses-select"]}>
       {/* Враппер для года */}
       <div className={styles["expenses-select__section"]}>
-        <span className={styles["expenses-select__title"]}>{t("Year")}</span>
+        <span className={styles["expenses-select__title"]}>{t("Year")}:</span>
         <div className={styles["expenses-select__years"]}>
           {availableYears.map((year) => {
             const hasExpenses = yearsWithExpenses.has(year);
@@ -65,9 +65,8 @@ const DataExpensesSelect = ({ expenses = [], selectedMonth, setSelectedMonth, se
         </div>
       </div>
 
-      {/* Враппер для месяцев */}
       <div className={styles["expenses-select__section"]}>
-        <span className={styles["expenses-select__title"]}>{t("Month")}</span>
+        <span className={styles["expenses-select__title"]}>{t("Month")}:</span>
         <div className={styles["expenses-select__grid"]}>
           {monthsList.map((month, i) => {
             const isActive = activeMonths.has(i);

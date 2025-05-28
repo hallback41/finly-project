@@ -29,11 +29,10 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: start;
+  border: none;
   gap: 1.125rem;
   width: 100%;
   padding: 0.75rem 0;
-  border-radius: var(--categorie-border-radius);
-  box-shadow: var(--box-shadow);
   margin: 1.125rem 0;
   z-index: 1;
 }

@@ -28,8 +28,14 @@
 .categories {
   position: relative;
   overflow: hidden;
-  padding-block: 1.25rem;
+  padding: 1.875rem 2.1875rem;
   transition: filter 0.3s ease;
+  z-index: 1;
+}
+@media (width <= 47.99875rem) {
+  .categories {
+    padding: 0.625rem 0.3125rem;
+  }
 }
 .categories__bg-video {
   position: absolute;
@@ -45,6 +51,7 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  z-index: -1;
 }
 .categories__list {
   position: relative;
@@ -57,5 +64,6 @@
   .categories__list {
     grid-template-columns: 1fr;
     gap: 0.3125rem;
+    z-index: 1;
   }
 }/*# sourceMappingURL=CategoriesBlock.module.css.map */

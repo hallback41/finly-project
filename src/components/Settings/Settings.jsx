@@ -15,7 +15,6 @@ const Settings = () => {
 
   return (
     <div className={`${styles.settings} container`}>
-      <AddTestExpensesButton />
       <ThemeVideoBackground theme={currentTheme} />
       <div className={styles["settings__content"]}>
         <h1 className={styles["settings__title"]}>{t("Settings")}</h1>

@@ -1,7 +1,11 @@
 .statistics {
   position: relative;
   overflow: hidden;
+  padding-inline: rem(45);
 
+  @include mobile {
+    padding-inline: rem(5);
+  }
   .video-wrapper {
     position: absolute;
     inset: 0;

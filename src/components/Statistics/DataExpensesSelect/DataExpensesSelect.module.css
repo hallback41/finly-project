@@ -29,13 +29,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 1rem;
+  padding: 0.3125rem;
   border: var(--border);
   font-family: var(--font-family-them);
   border-radius: var(--categorie-border-radius);
   background: var(--color-statistics-background);
   box-shadow: var(--box-shadow);
-  margin: 1.25rem auto;
+  margin: 0.625rem auto;
   min-width: 100%;
 }
 .expenses-select__section {
@@ -56,9 +56,15 @@
   margin-bottom: 1.125rem;
   text-align: center;
 }
+@media (width <= 47.99875rem) {
+  .expenses-select__title {
+    font-size: 1.625rem;
+    margin-bottom: 0.75rem;
+  }
+}
 .expenses-select__years {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
   margin-left: 1rem;
 }
@@ -72,8 +78,9 @@
 .expenses-select__year-btn {
   border: var(--border);
   border-radius: var(--categorie-border-radius);
-  padding: 0.75rem 1.125rem;
+  padding: 0.3125rem 0.125rem;
   min-width: 4.375rem;
+  font-size: 1rem;
   background: rgba(30, 30, 30, 0.18);
   color: var(--color-light);
   cursor: pointer;
@@ -115,8 +122,8 @@
 .expenses-select__btn {
   border: none;
   border-radius: var(--categorie-border-radius);
-  font-weight: 700;
-  padding: 1.125rem 0.5rem;
+  font-size: 1rem;
+  padding: 0.3125rem 0.125rem;
   min-width: 4.875rem;
   background: rgba(30, 30, 30, 0.18);
   color: var(--color-light);

@@ -4,11 +4,15 @@
   position: relative;
   overflow: hidden;
   font-family: var(--font-family-them);
-  padding-block: rem(20);
+  padding: rem(10) rem(20);
   color: var(--color-text);
   transition: filter 0.3s ease;
   min-height: 100vh;
   z-index: 1;
+
+  @include mobile {
+    padding: rem(10) rem(5);
+  }
 
   &__bg-video {
     position: absolute;
@@ -18,9 +22,9 @@
     object-fit: cover;
     opacity: 1;
     pointer-events: none;
-    z-index: -1000;
     pointer-events: none;
     user-select: none;
+    z-index: -1;
   }
 
   &__title {
@@ -28,6 +32,11 @@
     color: var(--color-text);
     padding-block: rem(20);
     z-index: 2;
+
+    @include mobile {
+      padding-block: rem(5);
+      font-size: rem(24);
+    }
   }
 
   &__content {
@@ -36,10 +45,9 @@
     gap: rem(20);
     position: relative;
     z-index: 1;
-    padding: rem(20) rem(40);
-    background-color: var(--color-statistics-background);
-    border-radius: var(--categorie-border-radius);
-    box-shadow: var(--box-shadow);
-    transition: var(--transition-duration);
+
+    @include mobile {
+      gap: rem(5);
+    }
   }
 }

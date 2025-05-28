@@ -6,7 +6,7 @@
   position: relative;
   background-color: var(--color-statistics-background);
   border: var(--border);
-  border-radius: var(--border-radius-theme);
+  border-radius: var(--categorie-border-radius);
   box-shadow: var(--box-shadow);
 
   @include laptop {

@@ -42,13 +42,19 @@
   box-shadow: var(--box-shadow);
   transition: background-color var(--transition-duration) ease;
 }
+@media (width <= 47.99875rem) {
+  .item {
+    padding: 0.3125rem 0.1875rem;
+    font-size: 1rem;
+  }
+}
 .item:hover {
   background-color: var(--color-statistics-background-hover);
   scale: 1.01;
 }
 @media (width <= 47.99875rem) {
   .item {
-    font-size: 1rem;
+    font-size: 0.875rem;
   }
 }
 .item__date {

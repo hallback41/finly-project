@@ -13,8 +13,8 @@
   min-width: 100%;
 
   @include mobile {
-    padding: rem(20) rem(10);
-    max-width: 98vw;
+    padding: rem(10);
+    font-size: rem(18);
   }
 }
 
@@ -28,14 +28,10 @@
   p {
     color: var(--color-text-overlay);
     text-align: center;
-    font-weight: 500;
-    line-height: 1.7;
     margin: 0;
 
     span {
       color: var(--color-green);
-      font-weight: 700;
-      letter-spacing: 0.02em;
     }
 
     a {
@@ -63,6 +59,7 @@
 
   @include mobile {
     grid-template-columns: repeat(1, 1fr);
+    gap: rem(8);
   }
 
   a {
@@ -76,11 +73,15 @@
     border-radius: var(--categorie-border-radius);
     padding: rem(10) rem(16);
     font-size: rem(32);
-    font-weight: 600;
     text-decoration: none;
     box-shadow: var(--box-shadow);
     transition: background var(--transition-duration), color var(--transition-duration),
       box-shadow var(--transition-duration);
+
+    @include mobile {
+      padding: rem(5) rem(10);
+      font-size: rem(16);
+    }
 
     &:hover {
       background: var(--color-accent);

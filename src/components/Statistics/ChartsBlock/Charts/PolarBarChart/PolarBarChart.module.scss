@@ -2,13 +2,17 @@
 
 .container {
   width: 100%;
-  height: 100%;
-  padding: rem(0);
+  height: rem(650);
+  padding: 0;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: var(--border);
-  border-radius: var(--border-radius-theme);
+
+  @include mobile {
+    height: rem(320);
+    overflow: hidden;
+  }
 }
 
 .chartWrapper {
@@ -18,6 +22,7 @@
   max-width: rem(1400);
   height: 100%;
   background-color: var(--color-statistics-background);
+  border: var(--border);
   border-radius: var(--categorie-border-radius);
 }
 

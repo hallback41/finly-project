@@ -98,7 +98,7 @@ const BarRaceChart = ({ expenses }) => {
               fontFamily,
               color: "#000",
               fontWeight: "bold",
-              fontSize: 22,
+              fontSize: 18,
               textBorderColor: "#fff",
               textBorderWidth: 3,
               align: "left",
@@ -112,10 +112,10 @@ const BarRaceChart = ({ expenses }) => {
           },
         ],
         grid: {
-          top: 30,
-          bottom: 30,
-          left: 30,
-          right: 30,
+          top: 10,
+          bottom: 10,
+          left: 5,
+          right: 5,
         },
         animationDurationUpdate: 500,
       };

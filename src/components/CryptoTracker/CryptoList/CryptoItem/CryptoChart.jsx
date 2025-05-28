@@ -1,33 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryTheme, VictoryVoronoiContainer, VictoryTooltip } from "victory";
 
-// Получай id монеты напрямую из списка (например "btc-bitcoin")
 const CryptoChart = ({ coinId }) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     if (!coinId) return;
-    const endDateObj = new Date();
-    const end = endDateObj.toISOString().split("T")[0];
-    const startDateObj = new Date();
-    startDateObj.setDate(endDateObj.getDate() - 7);
-    const start = startDateObj.toISOString().split("T")[0];
 
-    fetch(
-      `https://thingproxy.freeboard.io/fetch/https://api.coinpaprika.com/v1/tickers/${coinId}/historical?start=${start}&end=${end}&interval=1d`
-    )
-      .then((res) => {
-        if (!res.ok) throw new Error("Not found");
-        return res.json();
-      })
+    // CoinGecko: 7 дней истории по USD
+    fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=7`)
+      .then((res) => res.json())
       .then((data) => {
-        if (!Array.isArray(data) || data.length === 0) return setData([]);
-        const chartData = data.map((item) => ({
-          x: new Date(item.timestamp).toLocaleDateString("en-GB", {
+        if (!data.prices) return setData([]);
+        const chartData = data.prices.map(([timestamp, price]) => ({
+          x: new Date(timestamp).toLocaleDateString("en-GB", {
             day: "2-digit",
             month: "short",
           }),
-          y: item.price,
+          y: price,
         }));
         setData(chartData);
       })
@@ -86,7 +76,7 @@ const CryptoChart = ({ coinId }) => {
         />
         <VictoryLine
           data={data}
-          interpolation="linear"
+          interpolation="step" // или "monotoneX" для плавных пиков
           style={{
             data: {
               stroke: "#00e676",

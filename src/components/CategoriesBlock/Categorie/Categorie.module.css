@@ -153,6 +153,7 @@
 .categorie__wrapper {
   display: flex;
   height: var(--category-height-desktop);
+  z-index: 1;
 }
 @media (width <= 90.06125rem) {
   .categorie__wrapper {

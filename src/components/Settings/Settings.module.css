@@ -29,11 +29,16 @@
   position: relative;
   overflow: hidden;
   font-family: var(--font-family-them);
-  padding-block: 1.25rem;
+  padding: 0.625rem 1.25rem;
   color: var(--color-text);
   transition: filter 0.3s ease;
   min-height: 100vh;
   z-index: 1;
+}
+@media (width <= 47.99875rem) {
+  .settings {
+    padding: 0.625rem 0.3125rem;
+  }
 }
 .settings__bg-video {
   position: absolute;
@@ -44,11 +49,11 @@
      object-fit: cover;
   opacity: 1;
   pointer-events: none;
-  z-index: -1000;
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  z-index: -1;
 }
 .settings__title {
   text-align: center;
@@ -56,15 +61,21 @@
   padding-block: 1.25rem;
   z-index: 2;
 }
+@media (width <= 47.99875rem) {
+  .settings__title {
+    padding-block: 0.3125rem;
+    font-size: 1.5rem;
+  }
+}
 .settings__content {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   position: relative;
   z-index: 1;
-  padding: 1.25rem 2.5rem;
-  background-color: var(--color-statistics-background);
-  border-radius: var(--categorie-border-radius);
-  box-shadow: var(--box-shadow);
-  transition: var(--transition-duration);
+}
+@media (width <= 47.99875rem) {
+  .settings__content {
+    gap: 0.3125rem;
+  }
 }/*# sourceMappingURL=Settings.module.css.map */

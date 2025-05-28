@@ -91,7 +91,7 @@
     @include mobile {
       @include fluid-text(30, 14);
       border: none;
-      padding-block: rem(20);
+      padding-block: rem(30);
     }
 
     &:hover {

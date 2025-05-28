@@ -120,7 +120,7 @@
   .form__btn {
     font-size: clamp(0.875rem, 0.6200980392rem + 1.045751634vw, 1.875rem);
     border: none;
-    padding-block: 1.25rem;
+    padding-block: 1.875rem;
   }
 }
 .form__btn:hover {

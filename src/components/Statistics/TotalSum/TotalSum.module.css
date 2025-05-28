@@ -27,7 +27,7 @@
 }
 .total {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 1.875rem;
   color: var(--color-text-overlay);
@@ -35,9 +35,15 @@
   font-size: 2.75rem;
   background-color: var(--color-statistics-background);
   border: var(--border);
-  border-radius: var(--border-radius-theme);
+  border-radius: var(--categorie-border-radius);
   box-shadow: var(--box-shadow);
   margin-bottom: 1.25rem;
+}
+@media (width <= 47.99875rem) {
+  .total {
+    font-size: 1.75rem;
+    padding: 1.25rem;
+  }
 }
 .total__label {
   color: var(--color-red);

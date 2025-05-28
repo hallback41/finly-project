@@ -2,7 +2,7 @@
 
 .total {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: rem(30);
   color: var(--color-text-overlay);
@@ -10,9 +10,14 @@
   font-size: rem(44);
   background-color: var(--color-statistics-background);
   border: var(--border);
-  border-radius: var(--border-radius-theme);
+  border-radius: var(--categorie-border-radius);
   box-shadow: var(--box-shadow);
   margin-bottom: rem(20);
+
+  @include mobile {
+    font-size: rem(28);
+    padding: rem(20);
+  }
 
   &__label {
     color: var(--color-red);

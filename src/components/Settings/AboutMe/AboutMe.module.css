@@ -39,8 +39,8 @@
 }
 @media (width <= 47.99875rem) {
   .settings__footer {
-    padding: 1.25rem 0.625rem;
-    max-width: 98vw;
+    padding: 0.625rem;
+    font-size: 1.125rem;
   }
 }
 
@@ -54,14 +54,10 @@
 .settings__about p {
   color: var(--color-text-overlay);
   text-align: center;
-  font-weight: 500;
-  line-height: 1.7;
   margin: 0;
 }
 .settings__about p span {
   color: var(--color-green);
-  font-weight: 700;
-  letter-spacing: 0.02em;
 }
 .settings__about p a {
   color: var(--color-green);
@@ -86,6 +82,7 @@
 @media (width <= 47.99875rem) {
   .settings__socials {
     grid-template-columns: repeat(1, 1fr);
+    gap: 0.5rem;
   }
 }
 .settings__socials a {
@@ -99,10 +96,15 @@
   border-radius: var(--categorie-border-radius);
   padding: 0.625rem 1rem;
   font-size: 2rem;
-  font-weight: 600;
   text-decoration: none;
   box-shadow: var(--box-shadow);
   transition: background var(--transition-duration), color var(--transition-duration), box-shadow var(--transition-duration);
+}
+@media (width <= 47.99875rem) {
+  .settings__socials a {
+    padding: 0.3125rem 0.625rem;
+    font-size: 1rem;
+  }
 }
 .settings__socials a:hover {
   background: var(--color-accent);

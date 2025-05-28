@@ -4,13 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: rem(24) rem(16);
+  padding: rem(5);
   border: var(--border);
   font-family: var(--font-family-them);
   border-radius: var(--categorie-border-radius);
   background: var(--color-statistics-background);
   box-shadow: var(--box-shadow);
-  margin: rem(20) auto;
+  margin: rem(10) auto;
   min-width: 100%;
 
   &__section {
@@ -30,11 +30,16 @@
     font-size: rem(42);
     margin-bottom: rem(18);
     text-align: center;
+
+    @include mobile {
+      font-size: rem(26);
+      margin-bottom: rem(12);
+    }
   }
 
   &__years {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: rem(12);
     margin-left: rem(16);
 
@@ -49,8 +54,10 @@
   &__year-btn {
     border: var(--border);
     border-radius: var(--categorie-border-radius);
-    padding: rem(12) rem(18);
+    padding: rem(5) rem(2);
     min-width: rem(70);
+    font-size: rem(16);
+
     background: rgba(30, 30, 30, 0.18);
     color: var(--color-light);
     cursor: pointer;
@@ -97,8 +104,8 @@
   &__btn {
     border: none;
     border-radius: var(--categorie-border-radius);
-    font-weight: 700;
-    padding: rem(18) rem(8);
+    font-size: rem(16);
+    padding: rem(5) rem(2);
     min-width: rem(78);
     background: rgba(30, 30, 30, 0.18);
     color: var(--color-light);

@@ -10,7 +10,6 @@ const LoginSection = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Следим за состоянием авторизации
     const unsubscribe = onAuthStateChanged(auth, setUser);
     return () => unsubscribe();
   }, []);

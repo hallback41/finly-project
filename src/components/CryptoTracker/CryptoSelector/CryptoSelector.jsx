@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { usePaprikaCoins } from "../../../hooks/usePaprikaCoins";
+import { useGeckoCoins } from "../../../hooks/useGeckoCoins";
 import styles from "./CryptoSelector.module.scss";
 import ImageWithFallback from "../../UI/ImageWithFallback";
 import { useTranslation } from "react-i18next";
 
 const CryptoSelector = ({ onSelect }) => {
   const { t } = useTranslation();
-  const { coins, loading } = usePaprikaCoins();
+  const { coins, loading } = useGeckoCoins();
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
 
