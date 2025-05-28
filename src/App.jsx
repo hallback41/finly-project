@@ -4,7 +4,6 @@ import { ThemeProvider } from "./context/ThemeContext";
 import MainLayout from "./components/MainLayout/MainLayout";
 import { CurrencyProvider } from "./context/CurrencyContext";
 import i18n from "./i18n";
-import { testFirestoreCRUD } from "./testFirestore";
 import { AuthProvider } from "./context/AuthContext";
 import { DatabaseProvider } from "./context/DataBaseContext.jsx";
 
@@ -13,10 +12,6 @@ function App() {
   if (savedLang) {
     i18n.changeLanguage(savedLang);
   }
-
-  useEffect(() => {
-    testFirestoreCRUD();
-  }, []);
 
   return (
     <AuthProvider>

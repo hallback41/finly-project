@@ -4,11 +4,10 @@ import CryptoList from "./CryptoList/CryptoList";
 import { useCallback } from "react";
 import ThemeVideoBackground from "../CategoriesBlock/ThemeVideoBackground";
 import { useTheme } from "@/context/ThemeContext";
-// import useLocalStorage from "../../hooks/useLocalStorage";
-import useCloudLocalStorage from "../../hooks/useCloudLocalStorage";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const CryptoTracker = () => {
-  const [selectedCoins, setSelectedCoins] = useCloudLocalStorage("selectedCoins", []);
+  const [selectedCoins, setSelectedCoins] = useLocalStorage("selectedCoins", []);
   const { currentTheme } = useTheme();
 
   const handleAddCoin = useCallback(
