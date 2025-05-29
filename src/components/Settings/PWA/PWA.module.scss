@@ -1,0 +1,46 @@
+@use "../../../styles/helpers/" as *;
+
+.installWrapper {
+  bottom: rem(24);
+  right: rem(24);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-crypto-background);
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
+  padding: rem(30);
+  box-shadow: var(--box-shadow);
+
+  @include mobile {
+    padding: rem(10);
+  }
+}
+
+.installBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(10);
+  padding: rem(24) rem(32);
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
+  font-size: rem(18);
+  color: var(--color-dark);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-duration), color var(--transition-duration),
+    box-shadow var(--transition-duration);
+  background: var(--color-accent);
+  box-shadow: var(--box-shadow);
+
+  @include mobile {
+    padding: rem(10) rem(16);
+    font-size: rem(16);
+  }
+
+  &:hover {
+    background: var(--color-dark);
+    color: var(--color-accent);
+  }
+}

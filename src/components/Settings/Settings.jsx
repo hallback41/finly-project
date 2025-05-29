@@ -7,7 +7,7 @@ import CurrencySelector from "./CurrencySelector/CurrencySelector";
 import { useTheme } from "@/context/ThemeContext";
 import { useTranslation } from "react-i18next";
 import AboutMe from "./AboutMe/AboutMe";
-import AddTestExpensesButton from "../tests/AddTestExpensesButton";
+import InstallPWAButton from "./PWA/PWA";
 
 const Settings = () => {
   const { currentTheme } = useTheme();
@@ -22,6 +22,7 @@ const Settings = () => {
         <LoginSection />
         <LanguageSelector />
         <CurrencySelector />
+        <InstallPWAButton />
         <AboutMe />
       </div>
     </div>

@@ -1,0 +1,71 @@
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1) drop-shadow(0 0 0 var(--color-gray-60));
+  }
+  50% {
+    transform: scale(1.005);
+    filter: brightness(1.1) drop-shadow(0 0 10px var(--color-gray-60));
+  }
+}
+.installWrapper {
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-crypto-background);
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
+  padding: 1.875rem;
+  box-shadow: var(--box-shadow);
+}
+@media (width <= 47.99875rem) {
+  .installWrapper {
+    padding: 0.625rem;
+  }
+}
+
+.installBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 1.5rem 2rem;
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
+  font-size: 1.125rem;
+  color: var(--color-dark);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition-duration), color var(--transition-duration), box-shadow var(--transition-duration);
+  background: var(--color-accent);
+  box-shadow: var(--box-shadow);
+}
+@media (width <= 47.99875rem) {
+  .installBtn {
+    padding: 0.625rem 1rem;
+    font-size: 1rem;
+  }
+}
+.installBtn:hover {
+  background: var(--color-dark);
+  color: var(--color-accent);
+}/*# sourceMappingURL=PWA.module.css.map */
