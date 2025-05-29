@@ -40,7 +40,7 @@ const TreemapChart = () => {
             fontSize: 18,
             color: "#fff",
             fontWeight: "bold",
-            textBorderColor: "#000", // черная окантовка
+            textBorderColor: "#000",
             textBorderWidth: 3,
           },
           leafDepth: 1,
@@ -48,7 +48,7 @@ const TreemapChart = () => {
         },
       ],
       tooltip: {
-        formatter: (params) => `<b>${params.name}</b><br>Сумма: ${params.value}`,
+        show: false,
       },
     }),
     [treemapData]

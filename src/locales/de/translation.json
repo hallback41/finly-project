@@ -61,5 +61,7 @@
   "Search...": "Suchen...",
   "Loading...": "Wird geladen...",
   "day": "Tag",
-  "Spent": "Ausgegeben"
+  "Spent": "Ausgegeben",
+  "collapse": "▲ Verbergen",
+  "expand": "▼ Erweitern"
 }

@@ -1,28 +1,56 @@
 @use "../../../../../styles/helpers/" as *;
 
-.chart {
+.chartWrapper {
   width: 100%;
-  min-height: rem(800);
   position: relative;
   background-color: var(--color-statistics-background);
   border: var(--border);
   border-radius: var(--categorie-border-radius);
   box-shadow: var(--box-shadow);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.18s;
 
-  @include laptop {
-    min-height: rem(600);
+  &.collapsed::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 48px;
+    pointer-events: none;
+    border-radius: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(250, 244, 247, 0.632) 80%,
+      rgba(250, 244, 247, 0.813) 100%
+    );
+    z-index: 3;
+    transition: opacity 0.3s;
   }
-  @include mobile {
-    min-height: rem(400);
+  &.expanded::after {
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
-.label {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  list-style: none;
-  padding-left: rem(60);
-  width: rem(150);
-  font-family: var(--font-family-them);
+.chart {
+  width: 100%;
+  height: 100%;
+  transition: none;
+}
+
+.expandHint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  text-align: center;
+  font-size: 16px;
+  color: #3b3a3a;
+  pointer-events: none;
+  user-select: none;
+  font-weight: 500;
+  text-shadow: 0 2px 8px #fff, 0 1px 1px #0002;
 }

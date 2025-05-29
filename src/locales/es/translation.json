@@ -61,5 +61,7 @@
   "Search...": "Buscar...",
   "Loading...": "Cargando...",
   "day": "día",
-  "Spent": "Gastado"
+  "Spent": "Gastado",
+  "collapse": "▲ Ocultar",
+  "expand": "▼ Expandir"
 }

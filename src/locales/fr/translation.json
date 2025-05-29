@@ -57,5 +57,7 @@
   "Search...": "Rechercher...",
   "Loading...": "Chargement...",
   "day": "jour",
-  "Spent": "Dépensé"
+  "Spent": "Dépensé",
+  "collapse": "▲ Masquer",
+  "expand": "▼ Développer"
 }

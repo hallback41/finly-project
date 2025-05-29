@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useRef, useMemo, useCallback, useEffect } from "react";
 import * as echarts from "echarts";
 import styles from "./BarRaceChart.module.scss";
 import { useDatabase } from "@/context/DataBaseContext";
@@ -6,7 +6,11 @@ import useEChart from "@/hooks/useECharts";
 import { useTheme } from "../../../../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
 
+const COLLAPSED_HEIGHT = 190;
+const EXPANDED_HEIGHT = 800;
+
 const BarRaceChart = ({ expenses }) => {
+  const [expanded, setExpanded] = useState(false);
   const chartRef = useRef(null);
   const { categories } = useDatabase();
   const { currentTheme } = useTheme();
@@ -98,7 +102,7 @@ const BarRaceChart = ({ expenses }) => {
               fontFamily,
               color: "#000",
               fontWeight: "bold",
-              fontSize: 18,
+              fontSize: 22,
               textBorderColor: "#fff",
               textBorderWidth: 3,
               align: "left",
@@ -124,6 +128,15 @@ const BarRaceChart = ({ expenses }) => {
   );
 
   useEffect(() => {
+    if (!chartRef.current) return;
+    const timer = setTimeout(() => {
+      const chart = echarts.getInstanceByDom(chartRef.current);
+      chart?.resize();
+    }, 520);
+    return () => clearTimeout(timer);
+  }, [expanded]);
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       if (!chartRef.current) return;
       const chart = echarts.getInstanceByDom(chartRef.current);
@@ -146,7 +159,27 @@ const BarRaceChart = ({ expenses }) => {
     return () => clearTimeout(timeout);
   }, [currentTheme, t]);
 
-  return <div ref={chartRef} className={styles.chart} style={{ width: "100%", height: "800px" }} />;
+  return (
+    <div
+      className={`${styles.chartWrapper} ${expanded ? styles.expanded : styles.collapsed}`}
+      onClick={() => setExpanded((prev) => !prev)}
+      style={{
+        maxHeight: expanded ? EXPANDED_HEIGHT : COLLAPSED_HEIGHT,
+        transition: "max-height 0.5s cubic-bezier(.4,2,.3,1)",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        ref={chartRef}
+        className={styles.chart}
+        style={{
+          width: "100%",
+          height: EXPANDED_HEIGHT,
+        }}
+      />
+      <div className={styles.expandHint}>{expanded ? t("collapse") : t("expand")}</div>
+    </div>
+  );
 };
 
 export default BarRaceChart;
