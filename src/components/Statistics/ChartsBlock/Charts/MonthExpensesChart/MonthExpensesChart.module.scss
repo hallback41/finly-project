@@ -1,0 +1,23 @@
+@use "../../../../../styles/helpers/" as *;
+
+.container {
+  width: 100%;
+  height: rem(650);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--categorie-border-radius);
+
+  @include mobile {
+    height: rem(320);
+  }
+}
+
+.chart {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--categorie-border-radius);
+  background-color: var(--color-statistics-background);
+}

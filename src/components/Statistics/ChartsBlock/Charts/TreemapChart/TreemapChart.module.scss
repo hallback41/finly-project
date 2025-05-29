@@ -1,0 +1,40 @@
+@use "../../../../../styles/helpers/" as *;
+
+.treemapChartContainer {
+  max-width: 100%;
+  min-width: 100%;
+  height: rem(650);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px; // добавь сюда!
+  overflow: hidden;
+
+  @include mobile {
+    height: rem(320);
+    overflow: hidden;
+  }
+}
+
+.treemapChartWrapper {
+  display: flex;
+  align-items: stretch;
+  min-width: 100%;
+  max-width: rem(1400);
+  height: 100%;
+  background-color: var(--color-statistics-background);
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
+}
+
+.treemapChart {
+  flex-grow: 1;
+  min-width: 128%;
+  height: 129%;
+  position: relative;
+  transform: translate(-11%, -11%);
+  z-index: -0;
+  border-radius: 50%;
+}
