@@ -26,16 +26,18 @@
   }
 }
 .treemapChartContainer {
-  max-width: 100%;
-  min-width: 100%;
+  position: relative;
+  width: 100%;
   height: 40.625rem;
   padding: 0;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 30px;
   overflow: hidden;
+  background-color: var(--color-statistics-background);
+  border: var(--border);
+  border-radius: var(--categorie-border-radius);
 }
 @media (width <= 47.99875rem) {
   .treemapChartContainer {
@@ -45,22 +47,21 @@
 }
 
 .treemapChartWrapper {
+  position: relative;
   display: flex;
   align-items: stretch;
-  min-width: 100%;
-  max-width: 87.5rem;
+  width: 100%;
   height: 100%;
-  background-color: var(--color-statistics-background);
-  border: var(--border);
-  border-radius: var(--categorie-border-radius);
+  overflow: hidden;
 }
 
 .treemapChart {
-  flex-grow: 1;
-  min-width: 128%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 128%;
   height: 129%;
-  position: relative;
-  transform: translate(-11%, -11%);
-  z-index: 0;
+  transform: translate(-50%, -50%);
+  z-index: 1;
   border-radius: 50%;
 }/*# sourceMappingURL=TreemapChart.module.css.map */

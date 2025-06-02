@@ -50,4 +50,5 @@
 }
 .total__value {
   color: var(--color-accent);
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0px 1px 0 #000, 1px 0px 0 #000, -1px 0px 0 #000, 0px -1px 0 #000;
 }/*# sourceMappingURL=TotalSum.module.css.map */

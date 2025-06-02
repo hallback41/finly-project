@@ -37,6 +37,44 @@
   box-shadow: var(--box-shadow);
   margin: 0.625rem auto;
   min-width: 100%;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow 0.18s;
+}
+.expenses-select.collapsed::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3.125rem;
+  pointer-events: none;
+  border-radius: 0 0 var(--categorie-border-radius) var(--categorie-border-radius);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 0%, rgba(250, 244, 247, 0.72) 70%, rgba(250, 244, 247, 0.93) 100%);
+  z-index: 2;
+  transition: opacity 0.3s;
+}
+.expenses-select .expandHint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  text-align: center;
+  font-size: 16px;
+  color: rgba(59, 58, 58, 0.6078431373);
+  pointer-events: none;
+  font-family: var(--font-family-them);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-weight: 500;
+  text-shadow: 0 2px 8px #fff, 0 1px 1px rgba(0, 0, 0, 0.1333333333);
+  z-index: 4;
+}
+.expenses-select.expanded::after {
+  opacity: 0;
+  pointer-events: none;
 }
 .expenses-select__section {
   display: flex;

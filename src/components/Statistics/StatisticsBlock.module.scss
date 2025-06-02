@@ -1,11 +1,27 @@
+@use "../../styles/helpers/" as *;
+
 .statistics {
   position: relative;
   overflow: hidden;
   padding-inline: rem(45);
+  min-height: rem(1200);
 
   @include mobile {
     padding-inline: rem(5);
   }
+
+  &__title {
+    font-family: var(--font-family-them);
+    font-size: rem(62);
+    color: var(--color-text);
+    text-align: center;
+    margin: rem(20);
+
+    @include mobile {
+      font-size: rem(42);
+    }
+  }
+
   .video-wrapper {
     position: absolute;
     inset: 0;

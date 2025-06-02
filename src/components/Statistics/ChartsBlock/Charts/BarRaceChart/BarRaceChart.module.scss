@@ -47,10 +47,12 @@
   right: 0;
   bottom: 8px;
   text-align: center;
+  font-family: var(--font-family-them);
   font-size: 16px;
   color: #3b3a3a;
   pointer-events: none;
   user-select: none;
   font-weight: 500;
   text-shadow: 0 2px 8px #fff, 0 1px 1px #0002;
+  z-index: 4;
 }

@@ -63,5 +63,12 @@
   "day": "day",
   "Spent": "Spent",
   "collapse": "▲ Hide",
-  "expand": "▼ Expand"
+  "expand": "▼ Expand",
+  "about": {
+    "like": "🚀 Like this app? <1>Hire its creator!</1>",
+    "intro": "👋 I’m Vlad — React & JS enthusiast, UI/UX perfectionist, and a true team player.",
+    "email": "📬 Drop me a line: <1>hallback41@gmail.com</1>",
+    "github": "🐙 GitHub",
+    "linkedin": "💼 LinkedIn"
+  }
 }

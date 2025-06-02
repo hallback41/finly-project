@@ -35,7 +35,9 @@ const StatisticsBlock = () => {
 
   return (
     <div className={`${styles.statistics} container`}>
+      <h2 className={styles["statistics__title"]}>Statistics</h2>
       <div className={styles["video-wrapper"]}>
+        {" "}
         <ThemeVideoBackground theme={currentTheme} />
         <div className={styles["video-blur"]}></div>
       </div>

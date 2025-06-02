@@ -5,6 +5,7 @@ import { useDatabase } from "@/context/DataBaseContext";
 import useEChart from "@/hooks/useECharts";
 import { useTheme } from "../../../../../context/ThemeContext";
 import { useTranslation } from "react-i18next";
+import { useCurrency } from "../../../../../context/CurrencyContext";
 
 const COLLAPSED_HEIGHT = 190;
 const EXPANDED_HEIGHT = 800;
@@ -15,6 +16,7 @@ const BarRaceChart = ({ expenses }) => {
   const { categories } = useDatabase();
   const { currentTheme } = useTheme();
   const { t } = useTranslation();
+  const { currency } = useCurrency();
 
   const getColor = useCallback((varName) => {
     return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -98,7 +100,7 @@ const BarRaceChart = ({ expenses }) => {
             label: {
               show: true,
               position: "insideLeft",
-              formatter: (params) => `${params.name}: ${params.data.realValue}`,
+              formatter: (params) => `${params.name}: ${params.data.realValue} ${currency.symbol}`,
               fontFamily,
               color: "#000",
               fontWeight: "bold",
