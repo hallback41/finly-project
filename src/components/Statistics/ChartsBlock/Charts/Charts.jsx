@@ -20,7 +20,7 @@ const Charts = ({ expenses }) => {
           style={{ width: "100%", height: "100%" }}
         >
           <SwiperSlide>
-            <TreemapChart categories={expenses} />
+            <TreemapChart expenses={expenses} />
           </SwiperSlide>
           <SwiperSlide>
             <MonthExpensesBarChart expenses={expenses} />

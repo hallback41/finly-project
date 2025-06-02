@@ -8,26 +8,27 @@ const MonthExpensesBarChart = ({ expenses }) => {
   const { t } = useTranslation();
 
   const { dayLabels, dailySums } = useMemo(() => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
+    if (!expenses.length) {
+      return { dayLabels: [], dailySums: [] };
+    }
+
+    const firstDate = new Date(expenses[0].date);
+    const year = firstDate.getFullYear();
+    const month = firstDate.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     const labels = Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString());
     const sums = Array(daysInMonth).fill(0);
 
-    expenses.forEach((exp) => {
+    for (const exp of expenses) {
       const date = new Date(exp.date);
-      if (date.getFullYear() === year && date.getMonth() === month) {
-        const day = date.getDate();
-        sums[day - 1] += exp.amount;
-      }
-    });
+      const day = date.getDate();
+      sums[day - 1] += exp.amount;
+    }
 
     return { dayLabels: labels, dailySums: sums };
   }, [expenses]);
 
-  // 2. ECharts
   useEChart(
     chartRef,
     () => ({

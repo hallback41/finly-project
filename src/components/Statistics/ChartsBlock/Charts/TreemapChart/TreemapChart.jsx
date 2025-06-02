@@ -5,22 +5,26 @@ import { useDatabase } from "@/context/DataBaseContext";
 import { useTranslation } from "react-i18next";
 import useEChart from "@/hooks/useECharts";
 
-const getTreemapData = (categories, t) => {
-  return categories.map((cat) => ({
-    name: t ? t(cat.name) : cat.name,
-    value: Array.isArray(cat.expenses) ? cat.expenses.reduce((sum, exp) => sum + (exp.amount || 0), 0) : 0,
-    itemStyle: {
-      color: cat.color,
-    },
-  }));
+const getTreemapData = (categories, expenses, t) => {
+  return categories.map((cat) => {
+    const sum = expenses.filter((exp) => exp.categoryId === cat.id).reduce((acc, exp) => acc + exp.amount, 0);
+
+    return {
+      name: t ? t(cat.name) : cat.name,
+      value: sum,
+      itemStyle: {
+        color: cat.color,
+      },
+    };
+  });
 };
 
-const TreemapChart = () => {
+const TreemapChart = ({ expenses }) => {
   const chartRef = useRef(null);
   const { categories } = useDatabase();
   const { t } = useTranslation();
 
-  const treemapData = useMemo(() => getTreemapData(categories, t), [categories, t]);
+  const treemapData = useMemo(() => getTreemapData(categories, expenses, t), [categories, expenses, t]);
 
   useEChart(
     chartRef,
@@ -33,7 +37,6 @@ const TreemapChart = () => {
           blurScope: "global",
           selectedMode: false,
           nodeClick: false,
-
           label: {
             show: true,
             formatter: "{b}\n{c}",
